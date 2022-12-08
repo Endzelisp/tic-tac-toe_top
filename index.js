@@ -1,4 +1,4 @@
-const Gameboard = ( function () {
+const Game = ( function () {
 
   const square = function (mark) {
     let squareMark = mark;
@@ -12,6 +12,8 @@ const Gameboard = ( function () {
     }
   }
 
-  return Array(9).fill(null).map(square);
+  const board = Array(9).fill(null).map(square);
+
+  return {board};
 })();
 
