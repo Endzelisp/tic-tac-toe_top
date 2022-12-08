@@ -50,3 +50,20 @@ textarea,
 select {
   font: inherit;
 }
+
+div.gameboard-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+div.gameboard-container > div.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+}
+
+div.board > div {
+  outline: 1px solid green;
+}
