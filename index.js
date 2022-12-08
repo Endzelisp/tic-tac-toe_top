@@ -1,6 +1,6 @@
 const Gameboard = ( function () {
 
-  const square = function (mark = '') {
+  const square = function (mark) {
     let squareMark = mark;
     return {
       get mark () {
