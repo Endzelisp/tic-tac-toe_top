@@ -12,17 +12,12 @@ const Game = ( function () {
     }
   }
 
-  const isOver = function () {
-    // Notify if every square of the board is already marked
-    return board.every(item => item.mark !== null)
-  }
-
   const board = Array(9).fill(null).map(square);
 
-  return {board, isOver};
+  return {board};
 })();
 
-const Gameplay = ( function () {
+const Gameplay = ( function (boardArray) {
 
   const activePlayer = (function () {
     let active;
@@ -32,5 +27,10 @@ const Gameplay = ( function () {
     }
   })()
 
-  return {activePlayer}
-})()
+  const isOver = function (boardArray) {
+    // Notify if every square of the board is already marked
+    return boardArray.every(item => item.mark !== null)
+  }
+
+  return {activePlayer, isOver}
+})(Game.board)
