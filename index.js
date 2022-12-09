@@ -17,8 +17,16 @@ const Game = ( function () {
     return board.every(item => item.mark !== null)
   }
 
+  const activePlayer = (function () {
+    let active;
+    return function () {
+      (active === 'X') ? active = 'O' : active = 'X';
+      return active
+    }
+  })()
+
   const board = Array(9).fill(null).map(square);
 
-  return {board, isOver};
+  return {board, isOver, activePlayer};
 })();
 
