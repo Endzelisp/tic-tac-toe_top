@@ -39,7 +39,7 @@ const Gameplay = ( function (board) {
 
   const isOver = function () {
     // Notify if every square of the board is already marked
-    return board.every(item => item.mark !== null)
+    return board.every(item => item.mark !== undefined)
   }
 
   return {activePlayer, isOver}
