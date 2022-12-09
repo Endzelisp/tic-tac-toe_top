@@ -17,7 +17,7 @@ const Gameboard = ( function () {
   return {array};
 })();
 
-const Gameplay = ( function (boardArray) {
+const Gameplay = ( function (board) {
 
   const activePlayer = (function () {
     let active;
@@ -27,10 +27,10 @@ const Gameplay = ( function (boardArray) {
     }
   })()
 
-  const isOver = function (boardArray) {
+  const isOver = function () {
     // Notify if every square of the board is already marked
-    return boardArray.every(item => item.mark !== null)
+    return board.every(item => item.mark !== null)
   }
 
   return {activePlayer, isOver}
-})(Game.board)
+})(Gameboard.array)
