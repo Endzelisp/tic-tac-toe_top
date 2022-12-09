@@ -1,7 +1,8 @@
 const Gameboard = ( function () {
 
-  const square = function (mark) {
-    let squareMark = mark;
+  const square = function () {
+    const div = document.createElement('div');
+    let squareMark;
     return {
       get mark () {
         return squareMark;
@@ -9,12 +10,21 @@ const Gameboard = ( function () {
       set mark (mark) {
         squareMark = mark;
       },
+      div,
     }
   }
 
-  const array = Array(9).fill(null).map(square);
+  const render = function (selector) {
+    const fatherElem = document.querySelector(selector);
+    array.map(item => {
+      fatherElem.appendChild(item.div);
+    })
+  }
 
-  return {array};
+  const array = Array(9).fill(null).map(square);
+  array.map((item, index) => item.div.setAttribute('data-index', index));
+
+  return {array, render};
 })();
 
 const Gameplay = ( function (board) {
@@ -34,3 +44,6 @@ const Gameplay = ( function (board) {
 
   return {activePlayer, isOver}
 })(Gameboard.array)
+
+
+Gameboard.render('div.board');
