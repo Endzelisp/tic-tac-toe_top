@@ -66,3 +66,17 @@ const Gameplay = ( function (board) {
 
 
 Gameboard.render('div.board');
+
+const board = document.querySelector('div.board');
+
+board.addEventListener('pointerdown', (e) => {
+  const target = e.target;
+  if (!Gameplay.isOver() && target.innerText === ''){
+    const index = target.getAttribute('data-index');
+    target.innerText = Gameboard.array[index].mark = Gameplay.activePlayer();
+    const winner = Gameplay.winner();
+    if (winner) {
+      console.log(`${winner} player is the winner!`)
+    }
+  }
+})
