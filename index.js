@@ -29,6 +29,10 @@ const Gameboard = ( function () {
 
 const Gameplay = ( function (board) {
 
+  function isBoardFull () {
+    return board.every(item => item.mark !== undefined)
+  }
+
   const activePlayer = (function () {
     let active;
     return function () {
@@ -38,8 +42,10 @@ const Gameplay = ( function (board) {
   })()
 
   const isOver = function () {
-    // Notify if every square of the board is already marked
-    return board.every(item => item.mark !== undefined)
+    // Notify whether every square of the board
+    // is already taken or if a player won
+    
+    return (isBoardFull()) || (!!winner())
   }
 
   const winner = function () {
