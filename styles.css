@@ -56,6 +56,10 @@ select {
 :root {
   --header-font-fam: 'Rubik Vinyl', cursive;
   --cairo-font: 'Cairo', sans-serif;
+  --light-gray: #ccc5b9;
+  --medium-gray: #403d39;
+  --dark-gray: #252422;
+  --orange: #eb5e28;
 }
 
 div.main-container {
@@ -66,7 +70,11 @@ div.main-container {
 
 div.main-container > header {
   font-family: var(--header-font-fam);
-  border-bottom: 1px solid slateblue;
+  background-color: var(--dark-gray);
+  color: var(--light-gray);
+  text-align: center;
+  font-size: 2rem;
+  border-bottom: 3px solid var(--orange);
 }
 
 div.gameboard-container {
