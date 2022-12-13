@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Rubik+Vinyl&display=swap');
+
 /* Box sizing rules */
 *,
 *::before,
@@ -51,12 +53,19 @@ select {
   font: inherit;
 }
 
+:root {
+  --header-font-fam: 'Rubik Vinyl', cursive;
+  --cairo-font: 'Cairo', sans-serif;
+}
+
 div.main-container {
   display: grid;
   grid-template-rows: 1fr 80vh 1fr;
+  font-family: var(--cairo-font);
 }
 
 div.main-container > header {
+  font-family: var(--header-font-fam);
   border-bottom: 1px solid slateblue;
 }
 
