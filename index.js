@@ -48,6 +48,10 @@ const Gameplay = ( function (board) {
     return (isBoardFull()) || (!!winner())
   }
 
+  const isDraw = function () {
+    return isBoardFull() && !winner()
+  }
+
   const winner = function () {
     const [p0, p1, p2, p3, p4, p5, p6, p7 ,p8] = board;
 
@@ -67,7 +71,7 @@ const Gameplay = ( function (board) {
     if (check(p2.mark, p4.mark, p6.mark)) return p2.mark
   }
 
-  return {activePlayer, isOver, winner}
+  return {activePlayer, isOver, winner, isDraw}
 })(Gameboard.array)
 
 
@@ -81,8 +85,8 @@ board.addEventListener('pointerdown', (e) => {
     const index = target.getAttribute('data-index');
     target.innerText = Gameboard.array[index].mark = Gameplay.activePlayer();
     const winner = Gameplay.winner();
-    if (winner) {
-      console.log(`${winner} player is the winner!`)
-    }
+    
+    if (winner) {console.log(`${winner} player is the winner!`)}
+    if (Gameplay.isDraw()) {console.log('is a draw')}
   }
 })
