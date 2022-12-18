@@ -78,6 +78,13 @@ const Gameplay = ( function (board) {
 Gameboard.render('div.board');
 
 const board = document.querySelector('div.board');
+const playerSelection = document.querySelector('div.player-controls > select');
+const playButton = document.querySelector('div.player-controls > button');
+
+playButton.addEventListener('pointerdown', () => {
+  let whoPlay = playerSelection.value;
+  console.log(whoPlay);
+})
 
 board.addEventListener('pointerdown', (e) => {
   const target = e.target;
