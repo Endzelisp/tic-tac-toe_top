@@ -65,8 +65,9 @@ select {
 
 div.main-container {
   display: grid;
-  grid-template-rows: 1fr 80vh 8vh;
+  grid-template-rows: 1fr 6fr 1fr;
   font-family: var(--cairo-font);
+  height: 100vh;
 }
 
 div.main-container > header {
