@@ -65,7 +65,7 @@ select {
 
 div.main-container {
   display: grid;
-  grid-template-rows: 1fr 80vh 1fr;
+  grid-template-rows: 1fr 80vh 8vh;
   font-family: var(--cairo-font);
 }
 
@@ -127,5 +127,22 @@ div.board > div:nth-child(6) {
 }
 
 footer {
-  border-top: 1px solid salmon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid var(--dark-gray);
+  background-color: var(--light-gray);
 }
+
+footer a,
+footer a:active,
+footer a:visited {
+  text-decoration: none;
+  color: var(--medium-gray);
+  transition: all 350ms ease;
+}
+
+footer a:hover {
+  color: var(--orange);
+}
+
