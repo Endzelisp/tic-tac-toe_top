@@ -91,6 +91,27 @@ div.gameboard-container > div.player-controls {
   align-items: center;
   }
 
+  div.player-controls > button {
+    padding: .5em 2em;
+    font-family: var(--header-font-fam);
+    font-size: 2rem;
+    font-weight: 900;
+    background-color: var(--medium-gray);
+    color: var(--light-gray);
+    border: none;
+    border-radius: .75em;
+    outline: 2px solid var(--orange);
+    outline-offset: .1em;
+  }
+
+  div.player-controls > button:hover {
+    outline: 4px solid var(--orange);
+  }
+
+    div.player-controls > button:active {
+    background-color: var(--dark-gray);
+  }
+
 div.gameboard-container > div.board {
   justify-self: center;
   align-self: center;
