@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Caramel&family=Rubik+Vinyl&display=swap');
 
 /* Box sizing rules */
 *,
@@ -56,6 +56,7 @@ select {
 :root {
   --header-font-fam: 'Rubik Vinyl', cursive;
   --cairo-font: 'Cairo', sans-serif;
+  --game-mark-font: 'Caramel', cursive;
   --light-gray: #ccc5b9;
   --medium-gray: #403d39;
   --dark-gray: #252422;
@@ -103,6 +104,12 @@ div.gameboard-container > div.board {
 }
 
 div.board > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--game-mark-font);
+  font-size: 2.5rem;
+  font-weight: 700;
   outline: 1px solid green;
 }
 
