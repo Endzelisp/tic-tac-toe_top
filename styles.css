@@ -80,16 +80,16 @@ div.main-container > header {
 
 div.gameboard-container {
   display: grid;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   height: 100%;
 }
 
-div.gameboard-container > div.player-selection {
+div.gameboard-container > div.player-controls {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  gap: 2rem;
-}
+  }
 
 div.gameboard-container > div.board {
   justify-self: center;
