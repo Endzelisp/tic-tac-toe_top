@@ -91,10 +91,6 @@ div.gameboard-container > div.player-selection {
   gap: 2rem;
 }
 
-div.player-selection > button {
-  padding: .5rem 2rem;
-}
-
 div.gameboard-container > div.board {
   justify-self: center;
   align-self: center;
