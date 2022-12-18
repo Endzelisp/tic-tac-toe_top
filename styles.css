@@ -110,7 +110,20 @@ div.board > div {
   font-family: var(--game-mark-font);
   font-size: 2.5rem;
   font-weight: 700;
-  outline: 1px solid green;
+}
+
+div.board > div:nth-child(2),
+div.board > div:nth-child(5),
+div.board > div:nth-child(8) {
+  border-right: 2px solid var(--orange);
+  border-left: 2px solid var(--orange);
+}
+
+div.board > div:nth-child(4),
+div.board > div:nth-child(5),
+div.board > div:nth-child(6) {
+  border-top: 2px solid var(--orange);
+  border-bottom: 2px solid var(--orange);
 }
 
 footer {
