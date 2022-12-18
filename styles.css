@@ -83,6 +83,17 @@ div.gameboard-container {
   height: 100%;
 }
 
+div.gameboard-container > div.player-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+div.player-selection > button {
+  padding: .5rem 2rem;
+}
+
 div.gameboard-container > div.board {
   justify-self: center;
   align-self: center;
