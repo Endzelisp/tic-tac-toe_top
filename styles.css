@@ -108,7 +108,7 @@ div.board > div {
   justify-content: center;
   align-items: center;
   font-family: var(--game-mark-font);
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
 }
 
