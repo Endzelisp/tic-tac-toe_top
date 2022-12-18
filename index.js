@@ -74,6 +74,20 @@ const Gameplay = ( function (board) {
   return {activePlayer, isOver, winner, isDraw}
 })(Gameboard.array)
 
+function playerCreator () {
+  let win = 0;
+  const winner = function () {
+    return ++win
+  }
+  const roundsWon = function () {
+    return win
+  }
+  return {winner, roundsWon}
+}
+
+// * ---------------* //
+// START main program //
+// * ---------------* //
 
 Gameboard.render('div.board');
 
