@@ -91,6 +91,14 @@ div.gameboard-container > div.player-controls {
   align-items: center;
   }
 
+  div.player-controls > select {
+    padding: .5em 1em;
+    font-size: 1.2rem;
+    background-color:var(--light-gray);
+    color: var(--dark-gray);
+    border-radius: .5rem;
+  } 
+
   div.player-controls > button {
     padding: .5em 2em;
     font-family: var(--header-font-fam);
