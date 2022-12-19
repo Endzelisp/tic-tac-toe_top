@@ -81,15 +81,21 @@ const Gameplay = ( function (board) {
   return {activePlayer, isOver, winner, isDraw}
 })(Gameboard.array)
 
-function playerCreator () {
+function playerCreator (playerMark) {
   let win = 0;
+  let m = playerMark;
   const winner = function () {
     return ++win
   }
   const roundsWon = function () {
     return win
   }
-  return {winner, roundsWon}
+  return {
+    winner,
+    roundsWon,
+    get mark () {return m},
+    set mark (mark) {m = mark},
+  }
 }
 
 // * ---------------* //
