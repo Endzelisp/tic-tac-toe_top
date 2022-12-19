@@ -81,6 +81,27 @@ const Gameplay = ( function (board) {
   return {activePlayer, isOver, winner, isDraw}
 })(Gameboard.array)
 
+const ScoreBoard = (function(selector) {
+  const board = document.querySelector(selector);
+  const playerX = board.querySelector('[data-player="X"]');
+  const playerO = board.querySelector('[data-player="O"]');
+  const scoreX = board.querySelector('[data-score="X"]');
+  const scoreO = board.querySelector('[data-score="O"]');
+  
+  function setPlayer (str) {
+    if (str === 'human-computer') {
+      playerX.innerText = 'Player';
+      playerO.innerText = 'Computer';
+    }
+    if (str === 'human-human') {
+      playerX.innerText = 'Player X';
+      playerO.innerText = 'Player O';
+    }
+  }
+
+  return {setPlayer}  
+})('div.score-board')
+
 function playerCreator (playerMark) {
   let win = 0;
   let m = playerMark;
@@ -104,13 +125,14 @@ function playerCreator (playerMark) {
 
 Gameboard.render('div.board');
 
+
 const board = document.querySelector('div.board');
 const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
 
 playButton.addEventListener('pointerdown', () => {
   let whoPlay = playerSelection.value;
-  console.log(whoPlay);
+  ScoreBoard.setPlayer(whoPlay);
 })
 
 board.addEventListener('pointerdown', (e) => {
