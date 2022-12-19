@@ -21,10 +21,17 @@ const Gameboard = ( function () {
     })
   }
 
+  const clear = function () {
+    array.map((item) => {
+      item.div.innerText = '';
+      item.mark = undefined;
+    })
+  }
+
   const array = Array(9).fill(null).map(square);
   array.map((item, index) => item.div.setAttribute('data-index', index));
 
-  return {array, render};
+  return {array, render, clear};
 })();
 
 const Gameplay = ( function (board) {
