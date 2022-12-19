@@ -152,6 +152,23 @@ div.board > div:nth-child(6) {
   border-bottom: 2px solid var(--orange);
 }
 
+div.score-board {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-self: center;
+  width: 80%;
+  height: fit-content;
+}
+
+div.score-board > * {
+  text-align: center;
+}
+
+div.score-board > h2 {
+  grid-column: span 2;
+}
+
 footer {
   display: flex;
   justify-content: center;
