@@ -73,7 +73,7 @@ const Gameplay = ( function (board) {
     if (check(p6.mark, p7.mark, p8.mark)) return p6.mark
     if (check(p0.mark, p3.mark, p6.mark)) return p0.mark
     if (check(p1.mark, p4.mark, p7.mark)) return p1.mark
-    if (check(p2.mark, p5.mark, p8.mark)) return p6.mark
+    if (check(p2.mark, p5.mark, p8.mark)) return p2.mark
     if (check(p0.mark, p4.mark, p8.mark)) return p0.mark
     if (check(p2.mark, p4.mark, p6.mark)) return p2.mark
   }
