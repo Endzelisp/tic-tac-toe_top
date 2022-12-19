@@ -119,6 +119,18 @@ function playerCreator (playerMark) {
   }
 }
 
+function game (e) {
+  const target = e.target;
+  if (!Gameplay.isOver() && target.innerText === ''){
+    const index = target.getAttribute('data-index');
+    target.innerText = Gameboard.array[index].mark = Gameplay.activePlayer();
+    const winner = Gameplay.winner();
+    
+    if (winner) {console.log(`${winner} player is the winner!`)}
+    if (Gameplay.isDraw()) {console.log('is a draw')}
+  }
+}
+
 // * ---------------* //
 // START main program //
 // * ---------------* //
@@ -135,14 +147,4 @@ playButton.addEventListener('pointerdown', () => {
   ScoreBoard.setPlayer(whoPlay);
 })
 
-board.addEventListener('pointerdown', (e) => {
-  const target = e.target;
-  if (!Gameplay.isOver() && target.innerText === ''){
-    const index = target.getAttribute('data-index');
-    target.innerText = Gameboard.array[index].mark = Gameplay.activePlayer();
-    const winner = Gameplay.winner();
-    
-    if (winner) {console.log(`${winner} player is the winner!`)}
-    if (Gameplay.isDraw()) {console.log('is a draw')}
-  }
-})
+board.addEventListener('pointerdown', game)
