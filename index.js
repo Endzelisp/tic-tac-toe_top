@@ -88,7 +88,7 @@ const ScoreBoard = (function(selector) {
   const scoreX = board.querySelector('[data-score="X"]');
   const scoreO = board.querySelector('[data-score="O"]');
   
-  function setPlayer (str) {
+  const setPlayer = function (str) {
     if (str === 'human-computer') {
       playerX.innerText = 'Player';
       playerO.innerText = 'Computer';
@@ -99,7 +99,12 @@ const ScoreBoard = (function(selector) {
     }
   }
 
-  return {setPlayer}  
+  const update = function (x, o) {
+    scoreX.innerText = x;
+    scoreO.innerText = o;
+  }
+
+  return {setPlayer, update}  
 })('div.score-board')
 
 function playerCreator (playerMark) {
