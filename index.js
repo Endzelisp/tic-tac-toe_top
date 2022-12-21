@@ -107,6 +107,22 @@ const ScoreBoard = (function(selector) {
   return {setPlayer, update}  
 })('div.score-board')
 
+const Computer = (function (board) {
+  function selectRandomItem (arr) {
+    const length = arr.length;
+    const random = Math.floor(Math.random() * length)
+    return arr[random]
+  }
+
+  const move = function () {
+    const freeSquares = board.filter(item => item.mark === undefined);
+    const randomSelectedSquare = selectRandomItem(freeSquares);
+    const mark = Gameplay.activePlayer();
+    randomSelectedSquare.mark = randomSelectedSquare.div.innerText = mark;
+  }
+  return {move}
+})(Gameboard.array)
+
 function playerCreator (playerMark) {
   let win = 0;
   let m = playerMark;
