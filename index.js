@@ -124,15 +124,27 @@ function playerCreator (playerMark) {
   }
 }
 
-function game (e) {
-  const target = e.target;
+function game (event, plyX, plyO) {
+  const target = event.target;
   if (!Gameplay.isOver() && target.innerText === ''){
     const index = target.getAttribute('data-index');
     target.innerText = Gameboard.array[index].mark = Gameplay.activePlayer();
     const winner = Gameplay.winner();
     
-    if (winner) {console.log(`${winner} player is the winner!`)}
-    if (Gameplay.isDraw()) {console.log('is a draw')}
+    if (winner === 'X') {
+      plyX.winner();
+      ScoreBoard.update(plyX.roundsWon(), plyO.roundsWon());
+      return 'over'
+    } else if (winner === 'O') {
+        plyO.winner();
+        ScoreBoard.update(plyX.roundsWon(), plyO.roundsWon());
+        return 'over'
+      }
+    
+    if (Gameplay.isDraw()) {
+      console.log('is a draw');
+      return 'over'
+    }
   }
 }
 
@@ -148,8 +160,20 @@ const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
 
 playButton.addEventListener('pointerdown', () => {
+  Gameboard.clear()
   let whoPlay = playerSelection.value;
   ScoreBoard.setPlayer(whoPlay);
-})
 
-board.addEventListener('pointerdown', game)
+  if (whoPlay === 'human-human') {
+    const playerX = playerCreator('X');
+    const playerO = playerCreator('O');
+
+    board.addEventListener('pointerdown', (e) => {
+      let status = game(e, playerX, playerO)
+
+      if (status === 'over') {
+        playButton.innerText = 'Restart';
+      }
+    })
+  }
+})
