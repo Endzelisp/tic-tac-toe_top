@@ -28,10 +28,16 @@ const Gameboard = ( function () {
     })
   }
 
+  const update = function () {
+    array.map(item => {
+      if (item.mark) item.div.innerText = item.mark
+    })
+  }
+
   const array = Array(9).fill(null).map(square);
   array.map((item, index) => item.div.setAttribute('data-index', index));
 
-  return {array, render, clear};
+  return {array, render, clear, update};
 })();
 
 const Gameplay = ( function (board) {
