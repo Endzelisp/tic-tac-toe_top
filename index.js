@@ -53,6 +53,8 @@ Gameplay module
 
 const Gameplay = ( function (board) {
 
+  let isActive = false;
+
   function isBoardFull () {
     return board.every(item => item.mark !== undefined)
   }
@@ -68,8 +70,10 @@ const Gameplay = ( function (board) {
   const isOver = function () {
     // Notify whether every square of the board
     // is already taken or if a player won
-    
-    return (isBoardFull()) || (!!winner())
+
+    let isOver = isBoardFull() || !!winner();
+    if (isOver) isActive = false;
+    return (isOver)
   }
 
   const isDraw = function () {
@@ -95,7 +99,7 @@ const Gameplay = ( function (board) {
     if (check(p2.mark, p4.mark, p6.mark)) return p2.mark
   }
 
-  return {activePlayer, isOver, winner, isDraw}
+  return {activePlayer, isOver, winner, isDraw, isActive}
 })(Gameboard.array)
 
 const ScoreBoard = (function(selector) {
@@ -200,28 +204,31 @@ gameContainer.addEventListener('pointerdown', () => {
 
 playButton.addEventListener('pointerdown', () => {
   Gameboard.clear()
+  Gameplay.isActive = true;
   let whoPlay = playerSelection.value;
   ScoreBoard.setPlayerLabel(whoPlay);
 })
 
 board.addEventListener('pointerdown', (e) => {
-  const target = e.target;
-  if (!Gameplay.isOver() && target.innerText === ''){
-    const index = target.getAttribute('data-index');
-    Gameboard.array[index].mark = Gameplay.activePlayer();
-    const winner = Gameplay.winner();
-    
-    if (winner === 'X') {
-      players[0].winner();
-      ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
-    } else if (winner === 'O') {
-        players[1].winner();
+  if (Gameplay.isActive) {
+    const target = e.target;
+    if (!Gameplay.isOver() && target.innerText === ''){
+      const index = target.getAttribute('data-index');
+      Gameboard.array[index].mark = Gameplay.activePlayer();
+      const winner = Gameplay.winner();
+      
+      if (winner === 'X') {
+        players[0].winner();
         ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
+      } else if (winner === 'O') {
+          players[1].winner();
+          ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
+        }
+      
+      if (Gameplay.isDraw()) {
+        console.log('is a draw');
       }
-    
-    if (Gameplay.isDraw()) {
-      console.log('is a draw');
     }
+    if (Gameplay.isOver()) playButton.innerText = 'Restart';
   }
-  if (Gameplay.isOver()) playButton.innerText = 'Restart';
 })
