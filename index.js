@@ -146,36 +146,11 @@ function playerCreator (playerMark) {
   }
 }
 
-function game (event, plyX, plyO) {
-  const target = event.target;
-  if (!Gameplay.isOver() && target.innerText === ''){
-    const index = target.getAttribute('data-index');
-    target.innerText = Gameboard.array[index].mark = Gameplay.activePlayer();
-    const winner = Gameplay.winner();
-    
-    if (winner === 'X') {
-      plyX.winner();
-      ScoreBoard.update(plyX.roundsWon(), plyO.roundsWon());
-      return 'over'
-    } else if (winner === 'O') {
-        plyO.winner();
-        ScoreBoard.update(plyX.roundsWon(), plyO.roundsWon());
-        return 'over'
-      }
-    
-    if (Gameplay.isDraw()) {
-      console.log('is a draw');
-      return 'over'
-    }
-  }
-}
-
 // * ---------------* //
 // START main program //
 // * ---------------* //
 
 Gameboard.render('div.board');
-
 
 const board = document.querySelector('div.board');
 const playerSelection = document.querySelector('div.player-controls > select');
@@ -191,10 +166,25 @@ playButton.addEventListener('pointerdown', () => {
     const playerO = playerCreator('O');
 
     board.addEventListener('pointerdown', (e) => {
-      let status = game(e, playerX, playerO)
+      const target = e.target;
+      if (!Gameplay.isOver() && target.innerText === ''){
+        const index = target.getAttribute('data-index');
+        Gameboard.array[index].mark = Gameplay.activePlayer();
+        Gameboard.update()
+        const winner = Gameplay.winner();
+        
+        if (winner === 'X') {
+          playerX.winner();
+          ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
+        } else if (winner === 'O') {
+            playerO.winner();
+            ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
 
-      if (status === 'over') {
-        playButton.innerText = 'Restart';
+          }
+        
+        if (Gameplay.isDraw()) {
+          console.log('is a draw');
+        }
       }
     })
   }
