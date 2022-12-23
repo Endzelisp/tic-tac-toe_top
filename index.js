@@ -146,6 +146,16 @@ const Computer = (function (board) {
   return {move}
 })(Gameboard.array)
 
+/* ----------------
+
+Players module
+
+------------------*/
+
+const Players = (function() {
+  
+})()
+
 function playerCreator (playerMark) {
   let win = 0;
   let m = playerMark;
