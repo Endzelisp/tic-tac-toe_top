@@ -1,3 +1,8 @@
+/* ----------------
+
+Gameboard module
+
+------------------*/
 const Gameboard = ( function () {
 
   const square = function () {
@@ -39,6 +44,12 @@ const Gameboard = ( function () {
 
   return {array, render, clear, update};
 })();
+
+/* ----------------
+
+Gameplay module
+
+------------------*/
 
 const Gameplay = ( function (board) {
 
@@ -113,6 +124,12 @@ const ScoreBoard = (function(selector) {
   return {setPlayer, update}  
 })('div.score-board')
 
+/* ----------------
+
+Computer module
+
+------------------*/
+
 const Computer = (function (board) {
   function selectRandomItem (arr) {
     const length = arr.length;
@@ -146,9 +163,11 @@ function playerCreator (playerMark) {
   }
 }
 
-// * ---------------* //
-// START main program //
-// * ---------------* //
+/* ----------------
+
+START main program
+
+------------------*/
 
 Gameboard.render('div.board');
 
