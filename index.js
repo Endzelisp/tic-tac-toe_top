@@ -187,6 +187,7 @@ START main program
 ------------------*/
 
 Gameboard.render('div.board');
+const players = Players.create();
 
 const gameContainer = document.querySelector('div.gameboard-container');
 const board = document.querySelector('div.board');
@@ -209,19 +210,18 @@ board.addEventListener('pointerdown', (e) => {
     const index = target.getAttribute('data-index');
     Gameboard.array[index].mark = Gameplay.activePlayer();
     const winner = Gameplay.winner();
-    console.log(winner);
     
     if (winner === 'X') {
-      playerX.winner();
-      ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
+      players[0].winner();
+      ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
     } else if (winner === 'O') {
-        playerO.winner();
-        ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
-
+        players[1].winner();
+        ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
       }
     
     if (Gameplay.isDraw()) {
       console.log('is a draw');
     }
   }
+  if (Gameplay.isOver()) playButton.innerText = 'Restart';
 })
