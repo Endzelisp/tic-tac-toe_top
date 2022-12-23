@@ -153,7 +153,7 @@ Players module
 ------------------*/
 
 const Players = (function() {
-  const newPlayer = function (playerMark) {
+  function newPlayer (playerMark) {
   let win = 0;
   let m = playerMark;
   const winner = function () {
@@ -170,7 +170,7 @@ const Players = (function() {
   }
 }
 
-return {newPlayer}
+return {}
 })()
 
 /* ----------------
