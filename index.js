@@ -154,23 +154,30 @@ Players module
 
 const Players = (function() {
   function newPlayer (playerMark) {
-  let win = 0;
-  let m = playerMark;
-  const winner = function () {
-    return ++win
+    let win = 0;
+    let m = playerMark;
+    const winner = function () {
+      return ++win
+    }
+    const roundsWon = function () {
+      return win
+    }
+    return {
+      winner,
+      roundsWon,
+      get mark () {return m},
+      set mark (mark) {m = mark},
+    }
   }
-  const roundsWon = function () {
-    return win
-  }
-  return {
-    winner,
-    roundsWon,
-    get mark () {return m},
-    set mark (mark) {m = mark},
-  }
-}
 
-return {}
+  const create = function () {
+    const players = [];
+    players[0] = newPlayer('X');
+    players[1] = newPlayer('O');
+    return players
+  }
+
+return {create}
 })()
 
 /* ----------------
@@ -194,11 +201,6 @@ playButton.addEventListener('pointerdown', () => {
   Gameboard.clear()
   let whoPlay = playerSelection.value;
   ScoreBoard.setPlayer(whoPlay);
-
-  if (whoPlay === 'human-human') {
-    const playerX = Players.newPlayer('X');
-    const playerO = Players.newPlayer('O');
-  }
 })
 
 board.addEventListener('pointerdown', (e) => {
