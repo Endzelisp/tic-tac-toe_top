@@ -153,10 +153,7 @@ Players module
 ------------------*/
 
 const Players = (function() {
-  
-})()
-
-function playerCreator (playerMark) {
+  const playerCreator = function (playerMark) {
   let win = 0;
   let m = playerMark;
   const winner = function () {
@@ -172,6 +169,9 @@ function playerCreator (playerMark) {
     set mark (mark) {m = mark},
   }
 }
+
+return {playerCreator}
+})()
 
 /* ----------------
 
@@ -196,8 +196,8 @@ playButton.addEventListener('pointerdown', () => {
   ScoreBoard.setPlayer(whoPlay);
 
   if (whoPlay === 'human-human') {
-    const playerX = playerCreator('X');
-    const playerO = playerCreator('O');
+    const playerX = Players.playerCreator('X');
+    const playerO = Players.playerCreator('O');
   }
 })
 
