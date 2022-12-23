@@ -152,9 +152,14 @@ function playerCreator (playerMark) {
 
 Gameboard.render('div.board');
 
+const gameContainer = document.querySelector('div.gameboard-container');
 const board = document.querySelector('div.board');
 const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
+
+gameContainer.addEventListener('pointerdown', () => {
+  Gameboard.update()
+})
 
 playButton.addEventListener('pointerdown', () => {
   Gameboard.clear()
@@ -164,28 +169,28 @@ playButton.addEventListener('pointerdown', () => {
   if (whoPlay === 'human-human') {
     const playerX = playerCreator('X');
     const playerO = playerCreator('O');
+  }
+})
 
-    board.addEventListener('pointerdown', (e) => {
-      const target = e.target;
-      if (!Gameplay.isOver() && target.innerText === ''){
-        const index = target.getAttribute('data-index');
-        Gameboard.array[index].mark = Gameplay.activePlayer();
-        Gameboard.update()
-        const winner = Gameplay.winner();
-        
-        if (winner === 'X') {
-          playerX.winner();
-          ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
-        } else if (winner === 'O') {
-            playerO.winner();
-            ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
+board.addEventListener('pointerdown', (e) => {
+  const target = e.target;
+  if (!Gameplay.isOver() && target.innerText === ''){
+    const index = target.getAttribute('data-index');
+    Gameboard.array[index].mark = Gameplay.activePlayer();
+    const winner = Gameplay.winner();
+    console.log(winner);
+    
+    if (winner === 'X') {
+      playerX.winner();
+      ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
+    } else if (winner === 'O') {
+        playerO.winner();
+        ScoreBoard.update(playerX.roundsWon(), playerO.roundsWon());
 
-          }
-        
-        if (Gameplay.isDraw()) {
-          console.log('is a draw');
-        }
       }
-    })
+    
+    if (Gameplay.isDraw()) {
+      console.log('is a draw');
+    }
   }
 })
