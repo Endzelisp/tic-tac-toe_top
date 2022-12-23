@@ -105,7 +105,7 @@ const ScoreBoard = (function(selector) {
   const scoreX = board.querySelector('[data-score="X"]');
   const scoreO = board.querySelector('[data-score="O"]');
   
-  const setPlayer = function (str) {
+  const setPlayerLabel = function (str) {
     if (str === 'human-computer') {
       playerX.innerText = 'Player';
       playerO.innerText = 'Computer';
@@ -121,7 +121,7 @@ const ScoreBoard = (function(selector) {
     scoreO.innerText = o;
   }
 
-  return {setPlayer, update}  
+  return {setPlayerLabel, update}  
 })('div.score-board')
 
 /* ----------------
@@ -201,7 +201,7 @@ gameContainer.addEventListener('pointerdown', () => {
 playButton.addEventListener('pointerdown', () => {
   Gameboard.clear()
   let whoPlay = playerSelection.value;
-  ScoreBoard.setPlayer(whoPlay);
+  ScoreBoard.setPlayerLabel(whoPlay);
 })
 
 board.addEventListener('pointerdown', (e) => {
