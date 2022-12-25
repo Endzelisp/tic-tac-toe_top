@@ -192,6 +192,7 @@ START main program
 
 Gameboard.render('div.board');
 const players = Players.create();
+let whoPlay;
 
 const gameContainer = document.querySelector('div.gameboard-container');
 const board = document.querySelector('div.board');
@@ -205,7 +206,7 @@ gameContainer.addEventListener('pointerdown', () => {
 playButton.addEventListener('pointerdown', () => {
   Gameboard.clear()
   Gameplay.isActive = true;
-  let whoPlay = playerSelection.value;
+  whoPlay = playerSelection.value;
   ScoreBoard.setPlayerLabel(whoPlay);
 })
 
@@ -231,4 +232,10 @@ board.addEventListener('pointerdown', (e) => {
     }
     if (Gameplay.isOver()) playButton.innerText = 'Restart';
   }
+  if (!Gameplay.isOver() && whoPlay === 'human-computer') {
+    return (function () {
+      setTimeout(Computer.move, 300);
+      Gameboard.update()
+    })()
+  };
 })
