@@ -72,7 +72,7 @@ const Gameplay = ( function (board) {
     // is already taken or if a player won
 
     let isOver = isBoardFull() || !!winner();
-    if (isOver) isActive = false;
+    if (isOver) Gameplay.isActive = false;
     return (isOver)
   }
 
