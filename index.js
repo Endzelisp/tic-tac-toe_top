@@ -211,31 +211,35 @@ playButton.addEventListener('pointerdown', () => {
 })
 
 board.addEventListener('pointerdown', (e) => {
-  if (Gameplay.isActive) {
-    const target = e.target;
-    if (!Gameplay.isOver() && target.innerText === ''){
-      const index = target.getAttribute('data-index');
-      Gameboard.array[index].mark = Gameplay.activePlayer();
-      const winner = Gameplay.winner();
-      
-      if (winner === 'X') {
-        players[0].winner();
+  function checkWinner () {
+    const winner = Gameplay.winner();
+    if (winner === 'X') {
+      players[0].winner();
+      ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
+    } else if (winner === 'O') {
+        players[1].winner();
         ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
-      } else if (winner === 'O') {
-          players[1].winner();
-          ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
-        }
-      
-      if (Gameplay.isDraw()) {
-        console.log('is a draw');
       }
+    if (Gameplay.isDraw()) {
+      console.log('is a draw');
     }
-    if (Gameplay.isOver()) playButton.innerText = 'Restart';
   }
-  if (!Gameplay.isOver() && whoPlay === 'human-computer') {
+
+  const target = e.target;
+  if (Gameplay.isActive && target.innerText === ''){
+    const index = target.getAttribute('data-index');
+    Gameboard.array[index].mark = Gameplay.activePlayer();
+    checkWinner();
+  }
+
+  if (Gameplay.isOver()) playButton.innerText = 'Restart';
+
+  if (Gameplay.isActive && whoPlay === 'human-computer') {
     return (function () {
-      setTimeout(Computer.move, 300);
-      Gameboard.update()
+      setTimeout(() => {
+        Computer.move();
+        checkWinner();
+      }, 300);
     })()
   };
 })
