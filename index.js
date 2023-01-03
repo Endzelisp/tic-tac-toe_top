@@ -24,7 +24,7 @@ const Gameplay = ( function (board) {
     return board.every(item => item !== undefined)
   }
 
-  const activePlayer = (function () {
+  const turn = (function () {
     let active;
     return function () {
       (active === 'X') ? active = 'O' : active = 'X';
@@ -64,7 +64,7 @@ const Gameplay = ( function (board) {
     if (check(p2, p4, p6)) return p2
   }
 
-  return {activePlayer, isOver, winner, isDraw, isActive}
+  return {turn, isOver, winner, isDraw, isActive}
 })(Gameboard.array)
 
 const ScoreBoard = (function(selector) {
@@ -109,7 +109,7 @@ const Computer = (function (board) {
   const move = function () {
     const freeSquares = board.filter(item => item.mark === undefined);
     const randomSelectedSquare = selectRandomItem(freeSquares);
-    const mark = Gameplay.activePlayer();
+    const mark = Gameplay.turn();
     randomSelectedSquare.mark = randomSelectedSquare.div.innerText = mark;
   }
   return {move}
@@ -184,7 +184,7 @@ board.addEventListener('pointerdown', (e) => {
   const target = e.target;
   if (Gameplay.isActive && target.innerText === ''){
     const index = target.getAttribute('data-index');
-    Gameboard.array[index].mark = Gameplay.activePlayer();
+    Gameboard.array[index].mark = Gameplay.turn();
     checkWinner();
   }
 
