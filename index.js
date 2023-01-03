@@ -21,7 +21,7 @@ const Gameplay = ( function (board) {
   let isActive = false;
 
   function isBoardFull () {
-    return board.every(item => item.mark !== undefined)
+    return board.every(item => item !== undefined)
   }
 
   const activePlayer = (function () {
@@ -54,14 +54,14 @@ const Gameplay = ( function (board) {
       }
     }
 
-    if (check(p0.mark, p1.mark, p2.mark)) return p0.mark
-    if (check(p3.mark, p4.mark, p5.mark)) return p3.mark
-    if (check(p6.mark, p7.mark, p8.mark)) return p6.mark
-    if (check(p0.mark, p3.mark, p6.mark)) return p0.mark
-    if (check(p1.mark, p4.mark, p7.mark)) return p1.mark
-    if (check(p2.mark, p5.mark, p8.mark)) return p2.mark
-    if (check(p0.mark, p4.mark, p8.mark)) return p0.mark
-    if (check(p2.mark, p4.mark, p6.mark)) return p2.mark
+    if (check(p0, p1, p2)) return p0
+    if (check(p3, p4, p5)) return p3
+    if (check(p6, p7, p8)) return p6
+    if (check(p0, p3, p6)) return p0
+    if (check(p1, p4, p7)) return p1
+    if (check(p2, p5, p8)) return p2
+    if (check(p0, p4, p8)) return p0
+    if (check(p2, p4, p6)) return p2
   }
 
   return {activePlayer, isOver, winner, isDraw, isActive}
