@@ -106,13 +106,7 @@ const Computer = (function (board) {
     return arr[random]
   }
 
-  const move = function () {
-    const freeSquares = board.filter(item => item.mark === undefined);
-    const randomSelectedSquare = selectRandomItem(freeSquares);
-    const mark = Gameplay.turn();
-    randomSelectedSquare.mark = randomSelectedSquare.div.innerText = mark;
-  }
-  return {move}
+  return {}
 })(Gameboard.array)
 
 /* ----------------
@@ -190,12 +184,4 @@ board.addEventListener('pointerdown', (e) => {
 
   if (Gameplay.isOver()) playButton.innerText = 'Restart';
 
-  if (Gameplay.isActive && whoPlay === 'human-computer') {
-    return (function () {
-      setTimeout(() => {
-        Computer.move();
-        checkWinner();
-      }, 300);
-    })()
-  };
 })
