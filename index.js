@@ -5,44 +5,9 @@ Gameboard module
 ------------------*/
 const Gameboard = ( function () {
 
-  const square = function () {
-    const div = document.createElement('div');
-    let squareMark;
-    return {
-      get mark () {
-        return squareMark;
-      },
-      set mark (mark) {
-        squareMark = mark;
-      },
-      div,
-    }
-  }
+  const array = Array(9).fill(undefined);
 
-  const render = function (selector) {
-    const fatherElem = document.querySelector(selector);
-    array.map(item => {
-      fatherElem.appendChild(item.div);
-    })
-  }
-
-  const clear = function () {
-    array.map((item) => {
-      item.div.innerText = '';
-      item.mark = undefined;
-    })
-  }
-
-  const update = function () {
-    array.map(item => {
-      if (item.mark) item.div.innerText = item.mark
-    })
-  }
-
-  const array = Array(9).fill(null).map(square);
-  array.map((item, index) => item.div.setAttribute('data-index', index));
-
-  return {array, render, clear, update};
+  return {array};
 })();
 
 /* ----------------
@@ -190,7 +155,6 @@ START main program
 
 ------------------*/
 
-Gameboard.render('div.board');
 const players = Players.create();
 let whoPlay;
 
