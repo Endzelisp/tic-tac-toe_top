@@ -122,7 +122,7 @@ Players module
 ------------------*/
 
 const Players = (function() {
-  function newPlayer (playerMark) {
+  function create (playerMark) {
     let win = 0;
     let m = playerMark;
     const winner = function () {
@@ -138,14 +138,6 @@ const Players = (function() {
       set mark (mark) {m = mark},
     }
   }
-
-  const create = function () {
-    const players = [];
-    players[0] = newPlayer('X');
-    players[1] = newPlayer('O');
-    return players
-  }
-
 return {create}
 })()
 
