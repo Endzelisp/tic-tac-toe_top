@@ -7,7 +7,11 @@ const Gameboard = ( function () {
 
   const array = Array(9).fill(undefined);
 
-  return {array};
+  const clear = function () {
+    array.fill(undefined);
+  }
+
+  return {array, clear};
 })();
 
 /* ----------------
