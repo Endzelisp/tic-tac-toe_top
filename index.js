@@ -145,7 +145,6 @@ START main program
 
 ------------------*/
 
-const players = Players.create();
 let whoPlay;
 
 const gameContainer = document.querySelector('div.gameboard-container');
@@ -154,7 +153,7 @@ const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
 
 gameContainer.addEventListener('pointerdown', () => {
-  Gameboard.update()
+
 })
 
 playButton.addEventListener('pointerdown', () => {
@@ -169,8 +168,7 @@ board.addEventListener('pointerdown', (e) => {
   const target = e.target;
   if (Gameplay.isActive && target.innerText === ''){
     const index = target.getAttribute('data-index');
-    Gameboard.array[index].mark = Gameplay.turn();
-    checkWinner();
+    Gameboard.array[index] = Gameplay.turn();
   }
 
   if (Gameplay.isOver()) playButton.innerText = 'Restart';
