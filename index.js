@@ -165,19 +165,6 @@ playButton.addEventListener('pointerdown', () => {
 })
 
 board.addEventListener('pointerdown', (e) => {
-  function checkWinner () {
-    const winner = Gameplay.winner();
-    if (winner === 'X') {
-      players[0].winner();
-      ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
-    } else if (winner === 'O') {
-        players[1].winner();
-        ScoreBoard.update(players[0].roundsWon(), players[1].roundsWon());
-      }
-    if (Gameplay.isDraw()) {
-      console.log('is a draw');
-    }
-  }
 
   const target = e.target;
   if (Gameplay.isActive && target.innerText === ''){
