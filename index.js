@@ -53,9 +53,7 @@ const Gameplay = ( function (board) {
     const [p0, p1, p2, p3, p4, p5, p6, p7 ,p8] = board;
 
     function check (a, b, c) {
-      if (a === 'X' || a === 'O') {
-        return (a === b) && (b === c)
-      }
+      return (a !== undefined) && (a === b) && (b === c)
     }
 
     if (check(p0, p1, p2)) return p0
