@@ -139,6 +139,36 @@ const Players = (function() {
 return {create}
 })()
 
+/* ---------------------
+
+displayController module
+
+----------------------*/
+
+const displayController = (function (options) {
+  const gameboard = document.querySelectorAll(options.squareSelector);
+
+  const updateBoard = function () {
+    gameboard.forEach((item) => {
+      let index = item.getAttribute('data-index');
+      let array = options.array;
+      if (array[index] !== undefined) {item.innerText = array[index];}
+    })
+  }
+
+  const update = function () {
+    updateBoard()
+  }
+
+
+  return {update}
+})(
+  {
+    squareSelector: '[data-index]',
+    array: Gameboard.array,
+  }
+)
+
 /* ----------------
 
 START main program
@@ -153,7 +183,7 @@ const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
 
 gameContainer.addEventListener('pointerdown', () => {
-
+  displayController.update();
 })
 
 playButton.addEventListener('pointerdown', () => {
@@ -164,7 +194,6 @@ playButton.addEventListener('pointerdown', () => {
 })
 
 board.addEventListener('pointerdown', (e) => {
-
   const target = e.target;
   if (Gameplay.isActive && target.innerText === ''){
     const index = target.getAttribute('data-index');
