@@ -91,7 +91,12 @@ const ScoreBoard = (function(selector) {
     }
   }
 
-  const update = function (x, o) {
+  const update = function (score) {
+    let x = parseInt(scoreX.innerText);
+    let o = parseInt(scoreO.innerText);
+    x = (score.x) ? x + score.x : x + 0;
+    o = (score.o) ? o + score.o : o + 0;
+
     scoreX.innerText = x;
     scoreO.innerText = o;
   }
