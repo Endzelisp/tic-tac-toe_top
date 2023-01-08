@@ -180,21 +180,25 @@ START main program
 
 ------------------*/
 
-let whoPlay;
-
 const gameContainer = document.querySelector('div.gameboard-container');
 const board = document.querySelector('div.board');
 const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
 
+let whoPlay = playerSelection.value;
+ScoreBoard.setPlayerLabel(whoPlay);
+
 gameContainer.addEventListener('pointerdown', () => {
   displayController.update();
 })
 
-playButton.addEventListener('pointerdown', () => {
-  Gameplay.isActive = true;
+playerSelection.addEventListener('change', () => {
   whoPlay = playerSelection.value;
   ScoreBoard.setPlayerLabel(whoPlay);
+})
+
+playButton.addEventListener('pointerdown', () => {
+  Gameplay.isActive = true;
   if (playButton.innerText === 'Restart') {
     displayController.clear()
   }
