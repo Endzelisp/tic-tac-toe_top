@@ -158,8 +158,15 @@ const displayController = (function (options) {
     updateBoard()
   }
 
+  const clear = function () {
+    gameboard.forEach((item) => {
+      item.innerText = '';
+    })
+    Gameboard.clear();
+  }
 
-  return {update}
+
+  return {update, clear}
 })(
   {
     squareSelector: '[data-index]',
@@ -185,10 +192,12 @@ gameContainer.addEventListener('pointerdown', () => {
 })
 
 playButton.addEventListener('pointerdown', () => {
-  Gameboard.clear()
   Gameplay.isActive = true;
   whoPlay = playerSelection.value;
   ScoreBoard.setPlayerLabel(whoPlay);
+  if (playButton.innerText === 'Restart') {
+    displayController.clear()
+  }
 })
 
 board.addEventListener('pointerdown', (e) => {
