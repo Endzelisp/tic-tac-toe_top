@@ -30,9 +30,13 @@ const Gameplay = ( function (board) {
 
   const turn = (function () {
     let active;
-    return function () {
-      (active === 'X') ? active = 'O' : active = 'X';
-      return active
+    return function (restart = undefined) {
+      if (restart === undefined) {
+        (active === 'X') ? active = 'O' : active = 'X';
+        return active
+      } else if (restart === 'restart') {
+          active = undefined;
+      }
     }
   })()
 
@@ -211,6 +215,8 @@ board.addEventListener('pointerdown', (e) => {
     Gameboard.array[index] = Gameplay.turn();
   }
 
-  if (Gameplay.isOver()) playButton.innerText = 'Restart';
-
+  if (Gameplay.isOver()) {
+    playButton.innerText = 'Restart';
+    Gameplay.turn('restart');
+  };
 })
