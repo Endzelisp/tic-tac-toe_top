@@ -167,6 +167,11 @@ const displayController = (function (options) {
     updateBoard()
   }
 
+  const winner = function () {
+    let w = Gameplay.winner();
+    (w === 'X') ? ScoreBoard.update({x: 1}) : ScoreBoard.update({o: 1});
+  }
+
   const clear = function () {
     gameboard.forEach((item) => {
       item.innerText = '';
@@ -174,8 +179,7 @@ const displayController = (function (options) {
     Gameboard.clear();
   }
 
-
-  return {update, clear}
+  return {clear, update, winner}
 })(
   {
     squareSelector: '[data-index]',
