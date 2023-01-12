@@ -169,7 +169,8 @@ const displayController = (function (options) {
 
   const winner = function () {
     let w = Gameplay.winner();
-    (w === 'X') ? ScoreBoard.update({x: 1}) : ScoreBoard.update({o: 1});
+    if (w === 'X') ScoreBoard.update({x: 1});
+    if (w === 'O') ScoreBoard.update({o: 1});
   }
 
   const clear = function () {
