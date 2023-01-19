@@ -24,7 +24,7 @@ const Gameplay = ( function (board) {
 
   let isActive = false;
 
-  const isBoardFull = function () {
+  const _isBoardFull = function () {
     return board.every(item => item !== undefined)
   }
 
@@ -44,30 +44,30 @@ const Gameplay = ( function (board) {
     // Notify whether every square of the board
     // is already taken or if a player won
 
-    let isOver = isBoardFull() || !!winner();
+    let isOver = _isBoardFull() || !!winner();
     if (isOver) Gameplay.isActive = false;
     return (isOver)
   }
 
   const isDraw = function () {
-    return isBoardFull() && !winner()
+    return _isBoardFull() && !winner()
   }
 
   const winner = function () {
     const [p0, p1, p2, p3, p4, p5, p6, p7 ,p8] = board;
 
-    const check = function (a, b, c) {
+    const _check = function (a, b, c) {
       return (a !== undefined) && (a === b) && (b === c)
     }
 
-    if (check(p0, p1, p2)) return p0
-    if (check(p3, p4, p5)) return p3
-    if (check(p6, p7, p8)) return p6
-    if (check(p0, p3, p6)) return p0
-    if (check(p1, p4, p7)) return p1
-    if (check(p2, p5, p8)) return p2
-    if (check(p0, p4, p8)) return p0
-    if (check(p2, p4, p6)) return p2
+    if (_check(p0, p1, p2)) return p0
+    if (_check(p3, p4, p5)) return p3
+    if (_check(p6, p7, p8)) return p6
+    if (_check(p0, p3, p6)) return p0
+    if (_check(p1, p4, p7)) return p1
+    if (_check(p2, p5, p8)) return p2
+    if (_check(p0, p4, p8)) return p0
+    if (_check(p2, p4, p6)) return p2
   }
 
   return {turn, isOver, winner, isDraw, isActive}
@@ -111,7 +111,7 @@ Computer module
 ------------------*/
 
 const Computer = (function (board) {
-  const selectRandomItem = function (arr) {
+  const _selectRandomItem = function (arr) {
     const length = arr.length;
     const random = Math.floor(Math.random() * length)
     return arr[random]
@@ -155,7 +155,7 @@ displayController module
 const displayController = (function (options) {
   const gameboard = document.querySelectorAll(options.squareSelector);
 
-  const updateBoard = function () {
+  const _updateBoard = function () {
     gameboard.forEach((item) => {
       let index = item.getAttribute('data-index');
       let array = options.array;
@@ -164,7 +164,7 @@ const displayController = (function (options) {
   }
 
   const update = function () {
-    updateBoard()
+    _updateBoard()
   }
 
   const winner = function () {
