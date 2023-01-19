@@ -24,7 +24,7 @@ const Gameplay = ( function (board) {
 
   let isActive = false;
 
-  function isBoardFull () {
+  const isBoardFull = function () {
     return board.every(item => item !== undefined)
   }
 
@@ -56,7 +56,7 @@ const Gameplay = ( function (board) {
   const winner = function () {
     const [p0, p1, p2, p3, p4, p5, p6, p7 ,p8] = board;
 
-    function check (a, b, c) {
+    const check = function (a, b, c) {
       return (a !== undefined) && (a === b) && (b === c)
     }
 
@@ -111,7 +111,7 @@ Computer module
 ------------------*/
 
 const Computer = (function (board) {
-  function selectRandomItem (arr) {
+  const selectRandomItem = function (arr) {
     const length = arr.length;
     const random = Math.floor(Math.random() * length)
     return arr[random]
@@ -127,7 +127,7 @@ Players module
 ------------------*/
 
 const Players = (function() {
-  function create (playerMark) {
+  const create = function (playerMark) {
     let win = 0;
     let m = playerMark;
     const winner = function () {
@@ -199,7 +199,7 @@ const board = document.querySelector('div.board');
 const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
 
-function boardListener (e) {
+const boardListener = function (e) {
   const target = e.target;
   if (Gameplay.isActive && target.innerText === ''){
     const index = target.getAttribute('data-index');
