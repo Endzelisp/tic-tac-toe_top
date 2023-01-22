@@ -155,7 +155,7 @@ div.board > div:nth-child(6) {
 div.score-board {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr) 200px;
   justify-self: center;
   width: 80%;
   height: fit-content;
@@ -167,6 +167,12 @@ div.score-board > * {
 
 div.score-board > h2 {
   grid-column: span 2;
+}
+
+div.score-board > p:last-of-type {
+  grid-column: span 2;
+  align-self: center;
+  font-size: 2.5rem;
 }
 
 footer {
