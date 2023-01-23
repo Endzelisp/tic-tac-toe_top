@@ -129,21 +129,28 @@ Players module
 ------------------*/
 
 const Players = (function() {
-  const create = function (playerMark) {
+  const create = function (name, userMark) {
     let win = 0;
-    let m = playerMark;
-    const winner = function () {
-      return ++win
+    const m = userMark;
+    const uName = name;
+    const proto = {
+      winner: function () {
+        return ++win
+      },
+      get roundsWon() {
+        return win
+      },
+      get userName() {
+        return uName
+      },
     }
-    const roundsWon = function () {
-      return win
-    }
-    return {
-      winner,
-      roundsWon,
-      get mark () {return m},
-      set mark (mark) {m = mark},
-    }
+
+    const newPlayer = Object.create(proto)
+    Object.defineProperty(newPlayer, 'mark', {
+      get: function () {return m}
+    })
+
+    return newPlayer
   }
 return {create}
 })()
