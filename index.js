@@ -176,29 +176,3 @@ const gameContainer = document.querySelector('div.gameboard-container');
 const board = document.querySelector('div.board');
 const playButton = document.querySelector('div.player-controls > button');
 
-const boardListener = function (e) {
-  const target = e.target;
-  if (Gameplay.isActive && target.innerText === ''){
-    const index = target.getAttribute('data-index');
-    Gameboard.array[index] = Gameplay.turn();
-  }
-
-  if (Gameplay.isOver()) {
-    playButton.innerText = 'Restart';
-    Gameplay.turn('restart');
-    displayController.winner();
-    board.removeEventListener('pointerdown', boardListener)
-  };
-}
-
-gameContainer.addEventListener('pointerdown', () => {
-  displayController.update();
-})
-
-playButton.addEventListener('pointerdown', () => {
-  Gameplay.isActive = true;
-  board.addEventListener('pointerdown', boardListener)
-  if (playButton.innerText === 'Restart') {
-    displayController.clear()
-  }
-})
