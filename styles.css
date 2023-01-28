@@ -85,43 +85,8 @@ div.gameboard-container {
   height: 100%;
 }
 
-div.gameboard-container > div.player-controls {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  }
-
-  div.player-controls > select {
-    padding: .5em 1em;
-    font-size: 1.2rem;
-    background-color:var(--light-gray);
-    color: var(--dark-gray);
-    border-radius: .5rem;
-  } 
-
-  div.player-controls > button {
-    padding: .5em 2em;
-    font-family: var(--header-font-fam);
-    font-size: 2rem;
-    font-weight: 900;
-    background-color: var(--medium-gray);
-    color: var(--light-gray);
-    border: none;
-    border-radius: .75em;
-    outline: 2px solid var(--orange);
-    outline-offset: .1em;
-  }
-
-  div.player-controls > button:hover {
-    outline: 4px solid var(--orange);
-  }
-
-    div.player-controls > button:active {
-    background-color: var(--dark-gray);
-  }
-
 div.gameboard-container > div.board {
+  grid-column: 2 / 3;
   justify-self: center;
   align-self: center;
   display: grid;
@@ -152,29 +117,6 @@ div.board > div:nth-child(6) {
   border-bottom: 2px solid var(--orange);
 }
 
-div.score-board {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr) 200px;
-  justify-self: center;
-  width: 80%;
-  height: fit-content;
-}
-
-div.score-board > * {
-  text-align: center;
-}
-
-div.score-board > h2 {
-  grid-column: span 2;
-}
-
-div.score-board > p:last-of-type {
-  grid-column: span 2;
-  align-self: center;
-  font-size: 2.5rem;
-}
-
 footer {
   display: flex;
   justify-content: center;
@@ -194,4 +136,3 @@ footer a:visited {
 footer a:hover {
   color: var(--orange);
 }
-
