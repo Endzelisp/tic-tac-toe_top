@@ -75,37 +75,6 @@ const Gameplay = ( function (board) {
   return {turn, isOver, winner, isDraw, isActive}
 })(Gameboard.array)
 
-const ScoreBoard = (function(selector) {
-  const board = document.querySelector(selector);
-  const playerX = board.querySelector('[data-player="X"]');
-  const playerO = board.querySelector('[data-player="O"]');
-  const scoreX = board.querySelector('[data-score="X"]');
-  const scoreO = board.querySelector('[data-score="O"]');
-  
-  const setPlayerLabel = function (str) {
-    if (str === 'human-computer') {
-      playerX.innerText = 'Player';
-      playerO.innerText = 'Computer';
-    }
-    if (str === 'human-human') {
-      playerX.innerText = 'Player X';
-      playerO.innerText = 'Player O';
-    }
-  }
-
-  const update = function (score) {
-    let x = parseInt(scoreX.innerText);
-    let o = parseInt(scoreO.innerText);
-    x = (score.x) ? x + score.x : x + 0;
-    o = (score.o) ? o + score.o : o + 0;
-
-    scoreX.innerText = x;
-    scoreO.innerText = o;
-  }
-
-  return {setPlayerLabel, update}  
-})('div.score-board')
-
 /* ----------------
 
 Computer module
