@@ -174,7 +174,6 @@ START main program
 
 const gameContainer = document.querySelector('div.gameboard-container');
 const board = document.querySelector('div.board');
-const playerSelection = document.querySelector('div.player-controls > select');
 const playButton = document.querySelector('div.player-controls > button');
 
 const boardListener = function (e) {
@@ -192,16 +191,8 @@ const boardListener = function (e) {
   };
 }
 
-let whoPlay = playerSelection.value;
-ScoreBoard.setPlayerLabel(whoPlay);
-
 gameContainer.addEventListener('pointerdown', () => {
   displayController.update();
-})
-
-playerSelection.addEventListener('change', () => {
-  whoPlay = playerSelection.value;
-  ScoreBoard.setPlayerLabel(whoPlay);
 })
 
 playButton.addEventListener('pointerdown', () => {
