@@ -124,48 +124,6 @@ const Players = (function() {
 return {create}
 })()
 
-/* ---------------------
-
-displayController module
-
-----------------------*/
-
-const displayController = (function (options) {
-  const gameboard = document.querySelectorAll(options.squareSelector);
-
-  const _updateBoard = function () {
-    gameboard.forEach((item) => {
-      let index = item.getAttribute('data-index');
-      let array = options.array;
-      if (array[index] !== undefined) {item.innerText = array[index];}
-    })
-  }
-
-  const update = function () {
-    _updateBoard()
-  }
-
-  const winner = function () {
-    let w = Gameplay.winner();
-    if (w === 'X') ScoreBoard.update({x: 1});
-    if (w === 'O') ScoreBoard.update({o: 1});
-  }
-
-  const clear = function () {
-    gameboard.forEach((item) => {
-      item.innerText = '';
-    })
-    Gameboard.clear();
-  }
-
-  return {clear, update, winner}
-})(
-  {
-    squareSelector: '[data-index]',
-    array: Gameboard.array,
-  }
-)
-
 /* ----------------
 
 START main program
