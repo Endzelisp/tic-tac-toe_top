@@ -10,6 +10,11 @@
   <title>Tic Tac Toe</title>
 </head>
 <body>
+  <div class="modal user-interface">
+    <div class="player-selection"></div> <!-- select from single player vs computer and two players game -->
+    <div class="mark-selection"></div> <!-- allow user to select 'X' or 'O' mark to play -->
+    <div class="get-username"></div> <!-- show an interface to allow users type their names -->
+  </div>
   <div class="main-container">
     <header>
       <h1>Tic Tac Toe</h1>
@@ -17,14 +22,6 @@
     <main>
       <div class="gameboard-container">
         <div class="player-controls">
-          <select name="num-of-players" id="num-of-players">
-            <option value="human-computer">Player vs Computer</option>
-            <option value="human-human">Two Players</option>
-          </select>
-          <div>
-            <button>X</button>
-            <button>O</button>
-          </div>
           <button>Play</button>
         </div>
         <div class="board">
@@ -37,14 +34,6 @@
           <div data-index="6"></div>
           <div data-index="7"></div>
           <div data-index="8"></div>
-        </div>
-        <div class="score-board">
-          <h2>Score</h2>
-          <h3 data-player="X"></h3>
-          <h3 data-player="O"></h3>
-          <p data-score="X">0</p>
-          <p data-score="O">0</p>
-          <p>Player X won</p>
         </div>
       </div>
     </main>
