@@ -10,11 +10,33 @@
   <title>Tic Tac Toe</title>
 </head>
 <body>
-  <div class="modal user-interface">
-    <div class="player-selection"></div> <!-- select from single player vs computer and two players game -->
-    <div class="mark-selection"></div> <!-- allow user to select 'X' or 'O' mark to play -->
-    <div class="get-username"></div> <!-- show an interface to allow users type their names -->
+  <div class="modal full-screen center">
+    <section class="modal__game-selection">
+      <h3>Choose your game</h3>
+      <button data-players="players">Players</button>
+      <button data-players="computer">Computer</button>
+    </section>
+
+    <section class="modal__player-mark non-visible">
+      <h3>Select your mark</h3>
+      <button data-mark="players">X</button>
+      <button data-mark="computer">O</button>
+    </section>
+
+    <section class="modal__player-name non-visible">
+      <h3>type your name</h3>
+      <label for="player-x">Player X
+        <input type="text" id="player-x">
+      </label>
+      <label for="player-x">Player O
+        <input type="text" id="player-o">
+      </label>
+      <footer class="non-visible">
+        <button>Play</button>
+      </footer>
+    </section>
   </div>
+
   <div class="main-container">
     <header>
       <h1>Tic Tac Toe</h1>

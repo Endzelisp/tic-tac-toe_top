@@ -63,6 +63,53 @@ select {
   --orange: #eb5e28;
 }
 
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.center {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  display: grid;
+  background-color: #ffffff;
+}
+
+[class^="modal__"] {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1em;
+  row-gap: 2em;
+}
+
+[class^="modal__"] > :first-child {
+  grid-column: 1 / 3;
+  justify-self: center;
+  font-size: 2rem;
+}
+
+[class^="modal__"] footer {
+  grid-column: 1 / 3;
+  display: grid;
+  justify-content: center;
+}
+
+[class^="modal__"] button {
+  padding: 1em 2em;
+  font-size: 1.25rem;
+}
+
+.non-visible,
+footer.non-visible {
+  display: none;
+}
+
 div.main-container {
   display: grid;
   grid-template-rows: 1fr 6fr 1fr;
