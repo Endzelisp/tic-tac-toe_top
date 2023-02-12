@@ -152,11 +152,13 @@ const UserInterface = (function () {
     playerOne: _getElem('.modal__player-name input:nth-of-type(1)'),
     playerTwo: _getElem('.modal__player-name input:nth-of-type(2)'),
   }
+  const startGameBtn = _getElem('.modal__player-name > footer > button');
 
   return {
     modal,
     gameSelection,
     playerMark,
+    playerName,
   }
 })()
 
@@ -166,7 +168,3 @@ const UserInterface = (function () {
 START main program
 
 ------------------*/
-
-const board = document.querySelector('div.board');
-const playButton = document.querySelector('div.player-controls > button');
-
