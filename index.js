@@ -149,16 +149,17 @@ const UserInterface = (function () {
   };
   const playerName = {
     card: _getElem('.modal__player-name'),
-    playerOne: _getElem('.modal__player-name input:nth-of-type(1)'),
-    playerTwo: _getElem('.modal__player-name input:nth-of-type(2)'),
-  }
-  const startGameBtn = _getElem('.modal__player-name > footer > button');
+    playerOne: _getElem('.modal__player-name #player-one'),
+    playerTwo: _getElem('.modal__player-name #player-two'),
+  };
+  const startGameBtn = _getElem('div.modal > footer > button');
 
   return {
     modal,
     gameSelection,
     playerMark,
     playerName,
+    startGameBtn,
   }
 })()
 

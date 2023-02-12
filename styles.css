@@ -78,6 +78,7 @@ select {
   position: absolute;
   top: 0;
   display: grid;
+  gap: 1rem;
   background-color: #ffffff;
 }
 
@@ -94,13 +95,14 @@ select {
   font-size: 2rem;
 }
 
-[class^="modal__"] footer {
-  grid-column: 1 / 3;
+.modal > footer {
   display: grid;
   justify-content: center;
+  background-color: #ffffff;
+  border: none;
 }
 
-[class^="modal__"] button {
+.modal > footer > button {
   padding: 1em 2em;
   font-size: 1.25rem;
 }
