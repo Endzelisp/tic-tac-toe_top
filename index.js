@@ -124,13 +124,49 @@ const Players = (function() {
 return {create}
 })()
 
+/* ------------------
+
+User Interface module
+
+--------------------*/
+
+const UserInterface = (function () {
+
+  const _getElem = function (element) {
+    return document.querySelector(element)
+  }
+
+  const modal = _getElem('div.modal');
+  const gameSelection = {
+    card: _getElem('.modal__game-selection'),
+    playersBtn: _getElem('.modal__game-selection > button:nth-of-type(1)'),
+    computerBtn: _getElem('.modal__game-selection > button:nth-of-type(2)'),
+  };
+  const playerMark = {
+    card: _getElem('.modal__player-mark'),
+    xSelectionBtn: _getElem('.modal__player-mark > button:nth-of-type(1)'),
+    oSelectionBtn: _getElem('.modal__player-mark > button:nth-of-type(2)'),
+  };
+  const playerName = {
+    card: _getElem('.modal__player-name'),
+    playerOne: _getElem('.modal__player-name input:nth-of-type(1)'),
+    playerTwo: _getElem('.modal__player-name input:nth-of-type(2)'),
+  }
+
+  return {
+    modal,
+    gameSelection,
+    playerMark,
+  }
+})()
+
+
 /* ----------------
 
 START main program
 
 ------------------*/
 
-const gameContainer = document.querySelector('div.gameboard-container');
 const board = document.querySelector('div.board');
 const playButton = document.querySelector('div.player-controls > button');
 
