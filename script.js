@@ -117,23 +117,23 @@ const UserInterface = (function () {
     return document.querySelector(element)
   }
 
-  const modal = _getElem('div.modal');
+  const modal = _getElem('[data-modal="main-container"]');
   const gameSelection = {
-    card: _getElem('.modal__game-selection'),
-    playersBtn: _getElem('.modal__game-selection > button:nth-of-type(1)'),
-    computerBtn: _getElem('.modal__game-selection > button:nth-of-type(2)'),
+    card: _getElem('[data-modal="game-selection"]'),
+    playersBtn: _getElem('[data-player="player-vs-player"]'),
+    computerBtn: _getElem('[data-player="player-vs-computer"]'),
   };
   const playerMark = {
-    card: _getElem('.modal__player-mark'),
-    xSelectionBtn: _getElem('.modal__player-mark > button:nth-of-type(1)'),
-    oSelectionBtn: _getElem('.modal__player-mark > button:nth-of-type(2)'),
+    card: _getElem('[data-modal="player-mark"]'),
+    xSelectionBtn: _getElem('data-mark="x"'),
+    oSelectionBtn: _getElem('data-mark="o"'),
   };
   const playerName = {
-    card: _getElem('.modal__player-name'),
-    playerOne: _getElem('.modal__player-name #player-one'),
-    playerTwo: _getElem('.modal__player-name #player-two'),
+    card: _getElem('[data-modal="player-name"]'),
+    playerOne: _getElem('[data-input="player-x-name"]'),
+    playerTwo: _getElem('[data-input="player-o-name"]'),
   };
-  const startGameBtn = _getElem('div.modal > footer > button');
+  const startGameBtn = _getElem('[data-button="start"]');
 
   return {
     modal,
