@@ -16,8 +16,8 @@
     <div class="modal full-screen center">
       <section class="modal__game-selection">
         <h3>Choose your game</h3>
-        <button data-players="players">Players</button>
-        <button data-players="computer">Computer</button>
+        <button data-player="player-vs-player">Player vs Player</button>
+        <button data-player="player-vs-computer">Player vs Computer</button>
       </section>
 
       <section class="modal__player-mark non-visible">
@@ -30,16 +30,16 @@
         <h3>type your name</h3>
         <label for="player-x"
           >Player X
-          <input type="text" id="player-one" />
+          <input type="text" id="player-x" data-input="player-x-name" />
         </label>
         <label for="player-o"
           >Player O
-          <input type="text" id="player-two" />
+          <input type="text" id="player-o" data-input="player-o-name" />
         </label>
       </section>
 
       <footer>
-        <button class="non-visible">Start</button>
+        <button class="non-visible" data-button="start">Start</button>
       </footer>
     </div>
 
