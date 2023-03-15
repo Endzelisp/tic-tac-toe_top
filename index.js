@@ -1,10 +1,7 @@
 "use strict";
 
-/* ----------------
+/* ---------------- Gameboard module ----------------- */
 
-Gameboard module
-
-------------------*/
 const Gameboard = ( function () {
 
   const array = Array(9).fill(undefined);
@@ -16,11 +13,7 @@ const Gameboard = ( function () {
   return {array, clear};
 })();
 
-/* ----------------
-
-Gameplay module
-
-------------------*/
+/* ---------------- Gameplay module ------------------ */
 
 const Gameplay = ( function (board) {
 
@@ -75,11 +68,7 @@ const Gameplay = ( function (board) {
   return {turn, isOver, winner, isDraw, isActive}
 })(Gameboard.array)
 
-/* ----------------
-
-Computer module
-
-------------------*/
+/* ---------------- Computer module ------------------ */
 
 const Computer = (function (board) {
   const _selectRandomItem = function (arr) {
@@ -91,11 +80,7 @@ const Computer = (function (board) {
   return {}
 })(Gameboard.array)
 
-/* ----------------
-
-Players module
-
-------------------*/
+/* ----------------- Players module ------------------ */
 
 const Players = (function() {
   const create = function (name, userMark) {
@@ -124,11 +109,7 @@ const Players = (function() {
 return {create}
 })()
 
-/* ------------------
-
-User Interface module
-
---------------------*/
+/* ------------- User Interface module --------------- */
 
 const UserInterface = (function () {
 
@@ -164,8 +145,4 @@ const UserInterface = (function () {
 })()
 
 
-/* ----------------
-
-START main program
-
-------------------*/
+/* --------------- START main program ---------------- */
