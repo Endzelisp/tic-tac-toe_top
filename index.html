@@ -13,20 +13,20 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <div class="modal full-screen center">
-      <section class="modal__game-selection">
+    <div class="modal full-screen center" data-modal="main-container">
+      <section class="modal__game-selection" data-modal="game-selection">
         <h3>Choose your game</h3>
         <button data-player="player-vs-player">Player vs Player</button>
         <button data-player="player-vs-computer">Player vs Computer</button>
       </section>
 
-      <section class="modal__player-mark non-visible">
+      <section class="modal__player-mark non-visible" data-modal="player-mark">
         <h3>Select your mark</h3>
         <button data-mark="x">X</button>
         <button data-mark="o">O</button>
       </section>
 
-      <section class="modal__player-name non-visible">
+      <section class="modal__player-name non-visible" data-modal="player-name">
         <h3>type your name</h3>
         <label for="player-x"
           >Player X
