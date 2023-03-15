@@ -125,8 +125,8 @@ const UserInterface = (function () {
   };
   const playerMark = {
     card: _getElem('[data-modal="player-mark"]'),
-    xSelectionBtn: _getElem('data-mark="x"'),
-    oSelectionBtn: _getElem('data-mark="o"'),
+    xSelectionBtn: _getElem('[data-mark="x"]'),
+    oSelectionBtn: _getElem('[data-mark="o"]'),
   };
   const playerName = {
     card: _getElem('[data-modal="player-name"]'),
@@ -143,6 +143,5 @@ const UserInterface = (function () {
     startGameBtn,
   }
 })()
-
 
 /* --------------- START main program ---------------- */
