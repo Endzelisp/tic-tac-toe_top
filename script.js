@@ -117,11 +117,10 @@ const UserInterface = (function () {
     return document.querySelector(element)
   }
 
-  const modal = _getElem('[data-modal="main-container"]');
   const gameSelection = {
     card: _getElem('[data-modal="game-selection"]'),
-    playersBtn: _getElem('[data-player="player-vs-player"]'),
-    computerBtn: _getElem('[data-player="player-vs-computer"]'),
+    playerVsPlayerBtn: _getElem('[data-player="player-vs-player"]'),
+    playerVsComputerBtn: _getElem('[data-player="player-vs-computer"]'),
   };
   const playerMark = {
     card: _getElem('[data-modal="player-mark"]'),
@@ -136,7 +135,6 @@ const UserInterface = (function () {
   const startGameBtn = _getElem('[data-button="start"]');
 
   return {
-    modal,
     gameSelection,
     playerMark,
     playerName,
