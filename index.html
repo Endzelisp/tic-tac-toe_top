@@ -13,20 +13,22 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <div class="modal full-screen center" data-modal="main-container">
-      <section class="modal__game-selection" data-modal="game-selection">
+    <dialog data-modal="game-selection">
+      <form method="dialog" class="modal__game-selection">
         <h3>Choose your game</h3>
         <button data-player="player-vs-player">Player vs Player</button>
         <button data-player="player-vs-computer">Player vs Computer</button>
-      </section>
-
-      <section class="modal__player-mark non-visible" data-modal="player-mark">
+      </form>
+    </dialog>
+    <dialog data-modal="player-mark">
+      <form method="dialog" class="modal__player-mark">
         <h3>Select your mark</h3>
         <button data-mark="x">X</button>
         <button data-mark="o">O</button>
-      </section>
-
-      <section class="modal__player-name non-visible" data-modal="player-name">
+      </form>
+    </dialog>
+    <dialog data-modal="player-name">
+      <form method="dialog" class="modal__player-name">
         <h3>type your name</h3>
         <label for="player-x"
           >Player X
@@ -36,13 +38,9 @@
           >Player O
           <input type="text" id="player-o" data-input="player-o-name" />
         </label>
-      </section>
-
-      <footer>
-        <button class="non-visible" data-button="start">Start</button>
-      </footer>
-    </div>
-
+        <button data-button="start">Start</button>
+      </form>
+    </dialog>
     <div class="main-container">
       <header>
         <h1>Tic Tac Toe</h1>
