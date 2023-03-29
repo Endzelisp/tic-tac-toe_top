@@ -13,34 +13,49 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <dialog data-modal="game-selection">
-      <form method="dialog" class="modal__game-selection">
-        <h3>Choose your game</h3>
-        <button data-player="player-vs-player">Player vs Player</button>
-        <button data-player="player-vs-computer">Player vs Computer</button>
-      </form>
-    </dialog>
-    <dialog data-modal="player-mark">
-      <form method="dialog" class="modal__player-mark">
-        <h3>Select your mark</h3>
-        <button data-mark="x">X</button>
-        <button data-mark="o">O</button>
-      </form>
-    </dialog>
-    <dialog data-modal="player-name">
-      <form method="dialog" class="modal__player-name">
-        <h3>type your name</h3>
-        <label for="player-x"
-          >Player X
-          <input type="text" id="player-x" data-input="player-x-name" />
-        </label>
-        <label for="player-o"
-          >Player O
-          <input type="text" id="player-o" data-input="player-o-name" />
-        </label>
-        <button data-button="start">Start</button>
-      </form>
-    </dialog>
+    <div class="modal-form" data-element="modal-form">
+      <div class="carrousel-wrapper">
+        <div class="carrousel__form" data-element="carrousel__form">
+          <form class="form" data-form="game-selection">
+            <h3>Choose your game</h3>
+            <div class="form__controls">
+              <button type="button" data-player="player-vs-player">
+                Player vs Player
+              </button>
+              <button type="button" data-player="player-vs-computer">
+                Player vs Computer
+              </button>
+            </div>
+          </form>
+          <form class="form" data-form="player-mark">
+            <h3>Select your mark</h3>
+            <div class="form__controls">
+              <button type="button" data-mark="x">X</button>
+              <button type="button" data-mark="o">O</button>
+            </div>
+          </form>
+          <form class="form" data-form="player-name">
+            <h3>type your name</h3>
+            <div class="form__controls">
+              <label for="player-x"
+                >Player X
+                <input type="text" id="player-x" data-input="player-x-name" />
+              </label>
+              <label for="player-o"
+                >Player O
+                <input type="text" id="player-o" data-input="player-o-name" />
+              </label>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-form__control-btn">
+        <button type="button" data-button="back" data-state="inactive">
+          back
+        </button>
+        <button type="button" data-button="next">next</button>
+      </div>
+    </div>
     <div class="main-container">
       <header>
         <h1>Tic Tac Toe</h1>
