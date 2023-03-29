@@ -159,19 +159,25 @@ const UserInterface = (function () {
 })()
 
 const State = (function () {
+  let position = 0
+  let arr
   let typeOfGame
   let singlePlayerMark
   const players = {}
+  const currentUsers = []
 
   return {
+    position,
+    arr,
     typeOfGame,
     singlePlayerMark,
     players,
+    currentUsers,
   }
 })()
 
-let position = 0
-let arr
+// let position = 0
+// let arr
 
 /* --------------- Custom Events ---------------- */
 
@@ -184,11 +190,14 @@ const updateUserInfo = new CustomEvent('updateUserInfo', {
 /* --------------- Event Handlers ---------------- */
 
 UserInterface.btnNext.addEventListener('pointerdown', function _private() {
-  if (position < arr.length - 1 && this.dataset.state === 'active') {
-    ++position
+  if (
+    State.position < State.arr.length - 1 &&
+    this.dataset.state === 'active'
+  ) {
+    ++State.position
     UserInterface.rootElem.style.setProperty(
       '--translate-x',
-      `${arr[position]}`
+      `${State.arr[State.position]}`
     )
     this.classList.remove('button-active')
     this.dataset.state = 'inactive'
@@ -196,11 +205,11 @@ UserInterface.btnNext.addEventListener('pointerdown', function _private() {
 })
 
 UserInterface.btnBack.addEventListener('pointerdown', function _private() {
-  if (position > 0) {
-    --position
+  if (State.position > 0) {
+    --State.position
     UserInterface.rootElem.style.setProperty(
       '--translate-x',
-      `${arr[position]}`
+      `${State.arr[State.position]}`
     )
     if (UserInterface.btnNext.innerText === 'Start') {
       UserInterface.btnNext.innerText = 'next'
@@ -213,7 +222,7 @@ UserInterface.gameSelection.playerVsPlayerBtn.addEventListener(
   'pointerdown',
   function _private() {
     this.classList.add('button-active')
-    arr = ['0', '-50%']
+    State.arr = ['0', '-50%']
     UserInterface.markSelection.form.style.display = 'none'
     UserInterface.gameSelection.playerVsComputerBtn.classList.remove(
       'button-active'
@@ -228,7 +237,7 @@ UserInterface.gameSelection.playerVsComputerBtn.addEventListener(
   'pointerdown',
   function _private() {
     this.classList.add('button-active')
-    arr = ['0', '-33.33%', '-66.66%']
+    State.arr = ['0', '-33.33%', '-66.66%']
     UserInterface.markSelection.form.style.display = 'grid'
     UserInterface.gameSelection.playerVsPlayerBtn.classList.remove(
       'button-active'
@@ -319,6 +328,8 @@ UserInterface.btnNext.addEventListener('pointerdown', function _private() {
         State.players.playerO = UserInterface.nameSelection.inputPlayerO.value
       }
     }
+    State.currentUsers[0] = Players.create(State.players.playerX, 'x')
+    State.currentUsers[1] = Players.create(State.players.playerO, 'o')
     UserInterface.rootElem.dispatchEvent(updateUserInfo)
     UserInterface.modalForm.remove()
   }
