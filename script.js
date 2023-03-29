@@ -135,6 +135,14 @@ const UserInterface = (function () {
   }
   const btnBack = _getElem('[data-button="back"]')
   const btnNext = _getElem('[data-button="next"]')
+  const playerX = {
+    name: _getElem('[data-player="x"] h2'),
+    points: _getElem('[data-player="x"] p'),
+  }
+  const playerO = {
+    name: _getElem('[data-player="o"] h2'),
+    points: _getElem('[data-player="o"] p'),
+  }
 
   return {
     rootElem,
@@ -145,6 +153,8 @@ const UserInterface = (function () {
     nameSelection,
     btnBack,
     btnNext,
+    playerX,
+    playerO,
   }
 })()
 
@@ -162,6 +172,14 @@ const State = (function () {
 
 let position = 0
 let arr
+
+/* --------------- Custom Events ---------------- */
+
+const updateUserInfo = new CustomEvent('updateUserInfo', {
+  bubbles: true,
+  cancelable: false,
+  composed: false,
+})
 
 /* --------------- Event Handlers ---------------- */
 
@@ -293,14 +311,20 @@ UserInterface.btnNext.addEventListener('pointerdown', function _private() {
     }
     if (State.typeOfGame === 'player-vs-computer') {
       if (State.singlePlayerMark === 'x') {
-        State.players.PlayerX = UserInterface.nameSelection.inputPlayerX.value
+        State.players.playerX = UserInterface.nameSelection.inputPlayerX.value
         State.players.playerO = 'Computer'
       }
       if (State.singlePlayerMark === 'o') {
         State.players.playerX = 'Computer'
-        State.players.PlayerO = UserInterface.nameSelection.inputPlayerO.value
+        State.players.playerO = UserInterface.nameSelection.inputPlayerO.value
       }
     }
+    UserInterface.rootElem.dispatchEvent(updateUserInfo)
     UserInterface.modalForm.remove()
   }
+})
+
+UserInterface.rootElem.addEventListener('updateUserInfo', () => {
+  UserInterface.playerX.name.innerText = State.players.playerX
+  UserInterface.playerO.name.innerText = State.players.playerO
 })
