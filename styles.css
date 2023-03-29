@@ -195,13 +195,13 @@ div.gameboard-container {
   height: 100%;
 }
 
-div.gameboard-container div[class*="player"] {
+.player-info {
   justify-self: center;
   margin-top: 1rem;
   font-size: 1.5rem;
 }
 
-div.gameboard-container div[class*="player"] > p {
+.player-info > p {
   text-align: center;
   font-size: 4rem;
 }
