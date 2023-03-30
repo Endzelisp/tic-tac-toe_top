@@ -37,7 +37,7 @@ const Gameplay = (function (board) {
     // Notify whether every square of the board
     // is already taken or if a player won
 
-    let isOver = _isBoardFull() || !!winner()
+    const isOver = _isBoardFull() || !!winner()
     if (isOver) Gameplay.isActive = false
     return isOver
   }
@@ -61,6 +61,7 @@ const Gameplay = (function (board) {
     if (_check(p2, p5, p8)) return p2
     if (_check(p0, p4, p8)) return p0
     if (_check(p2, p4, p6)) return p2
+    return null
   }
 
   return { turn, isOver, winner, isDraw, isActive }
@@ -346,12 +347,14 @@ UserInterface.rootElem.addEventListener('updateUserInfo', () => {
 })
 
 UserInterface.gameboard.addEventListener('pointerdown', function _private(e) {
-  const target = e.target
-  const turn = Gameplay.turn()
-  if (Gameboard.array[target.dataset.index] === undefined) {
-    Gameboard.array[target.dataset.index] = turn
+  if (!Gameplay.isOver()) {
+    const target = e.target
+    const turn = Gameplay.turn()
+    if (Gameboard.array[target.dataset.index] === undefined) {
+      Gameboard.array[target.dataset.index] = turn
+    }
+    this.dispatchEvent(renderBoard)
   }
-  this.dispatchEvent(renderBoard)
 })
 
 UserInterface.rootElem.addEventListener('renderBoard', () => {
