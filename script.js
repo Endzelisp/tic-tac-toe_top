@@ -143,6 +143,7 @@ const UserInterface = (function () {
     name: _getElem('[data-player="o"] h2'),
     points: _getElem('[data-player="o"] p'),
   }
+  const gameboard = _getElem('[data-element="board"]')
 
   return {
     rootElem,
@@ -155,6 +156,7 @@ const UserInterface = (function () {
     btnNext,
     playerX,
     playerO,
+    gameboard,
   }
 })()
 
@@ -176,12 +178,15 @@ const State = (function () {
   }
 })()
 
-// let position = 0
-// let arr
-
 /* --------------- Custom Events ---------------- */
 
 const updateUserInfo = new CustomEvent('updateUserInfo', {
+  bubbles: true,
+  cancelable: false,
+  composed: false,
+})
+
+const renderBoard = new CustomEvent('renderBoard', {
   bubbles: true,
   cancelable: false,
   composed: false,
@@ -338,4 +343,22 @@ UserInterface.btnNext.addEventListener('pointerdown', function _private() {
 UserInterface.rootElem.addEventListener('updateUserInfo', () => {
   UserInterface.playerX.name.innerText = State.players.playerX
   UserInterface.playerO.name.innerText = State.players.playerO
+})
+
+UserInterface.gameboard.addEventListener('pointerdown', function _private(e) {
+  const target = e.target
+  const turn = Gameplay.turn()
+  if (Gameboard.array[target.dataset.index] === undefined) {
+    Gameboard.array[target.dataset.index] = turn
+  }
+  this.dispatchEvent(renderBoard)
+})
+
+UserInterface.rootElem.addEventListener('renderBoard', () => {
+  const gameCellsArr = [...UserInterface.gameboard.querySelectorAll('div')]
+  Gameboard.array.forEach((item, index) => {
+    if (item !== undefined) {
+      gameCellsArr[index].innerText = item
+    }
+  })
 })
