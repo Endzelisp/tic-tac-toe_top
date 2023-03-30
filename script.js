@@ -25,7 +25,7 @@ const Gameplay = (function (board) {
     let active
     return function (restart = undefined) {
       if (restart === undefined) {
-        active === 'X' ? (active = 'O') : (active = 'X')
+        active === 'x' ? (active = 'o') : (active = 'x')
         return active
       } else if (restart === 'restart') {
         active = undefined
@@ -188,6 +188,12 @@ const updateUserInfo = new CustomEvent('updateUserInfo', {
 })
 
 const renderBoard = new CustomEvent('renderBoard', {
+  bubbles: true,
+  cancelable: false,
+  composed: false,
+})
+
+const checkWinner = new CustomEvent('checkWinner', {
   bubbles: true,
   cancelable: false,
   composed: false,
@@ -364,4 +370,19 @@ UserInterface.rootElem.addEventListener('renderBoard', () => {
       gameCellsArr[index].innerText = item
     }
   })
+  UserInterface.rootElem.dispatchEvent(checkWinner)
+})
+
+UserInterface.rootElem.addEventListener('checkWinner', function _private() {
+  const winner = Gameplay.winner()
+  if (winner) {
+    const [whoWon] = State.currentUsers.filter((item) => item.mark === winner)
+    whoWon.winner()
+    if (winner === 'x') {
+      UserInterface.playerX.points.innerText = whoWon.roundsWon
+    }
+    if (winner === 'o') {
+      UserInterface.playerO.points.innerText = whoWon.roundsWon
+    }
+  }
 })
