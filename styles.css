@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Caramel&family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
 
 /* Box sizing rules */
 *,
@@ -56,7 +58,7 @@ select {
 :root {
   --header-font-fam: 'Rubik Vinyl', cursive;
   --cairo-font: 'Cairo', sans-serif;
-  --game-mark-font: 'Caramel', cursive;
+  --game-mark-font: 'Alkatra';
   --light-gray: #ccc5b9;
   --medium-gray: #403d39;
   --dark-gray: #252422;
@@ -215,7 +217,7 @@ div.gameboard-container > div.board {
   grid-template-rows: repeat(3, 100px);
 }
 
-div.board > div {
+div.board div {
   display: flex;
   justify-content: center;
   align-items: center;
