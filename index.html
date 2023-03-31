@@ -62,11 +62,18 @@
       </header>
       <main>
         <div class="gameboard-container">
+          <dialog data-dialog="congrats-modal">
+            <form method="dialog">
+              <button type="button" data-button="closing-congrats">X</button>
+              <h3 data-message="congrats">Great You did it!</h3>
+              <button type="button" data-button="restart">Play Again</button>
+            </form>
+          </dialog>
           <div class="player-info" data-player="x">
             <h2>Player X</h2>
             <p>0</p>
           </div>
-          <div class="board">
+          <div class="board" data-element="board">
             <div data-index="0"></div>
             <div data-index="1"></div>
             <div data-index="2"></div>
