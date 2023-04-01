@@ -374,6 +374,7 @@ UserInterface.gameboard.addEventListener('pointerdown', function _private(e) {
 UserInterface.rootElem.addEventListener('renderBoard', () => {
   const gameCellsArr = [...UserInterface.gameboard.querySelectorAll('div')]
   Gameboard.array.forEach((item, index) => {
+    gameCellsArr[index].innerText = ''
     if (item !== undefined) {
       gameCellsArr[index].innerText = item
     }
@@ -404,3 +405,14 @@ UserInterface.rootElem.addEventListener('checkWinner', function _private() {
   congratsMsgElem.innerText = `Congratulations ${whoWon.userName}, you won!`
   UserInterface.congratsModal.showModal()
 })
+
+UserInterface.congratsModal.addEventListener(
+  'pointerdown',
+  function _private(e) {
+    const target = e.target
+    if (target.dataset.button === 'restart') {
+      Gameboard.clear()
+      UserInterface.rootElem.dispatchEvent(renderBoard)
+    }
+  }
+)
