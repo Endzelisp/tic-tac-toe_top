@@ -409,6 +409,9 @@ function main() {
       }
     }
   )
+
+  UserInterface.nameSelection.inputPlayerX.value = ''
+  UserInterface.nameSelection.inputPlayerO.value = ''
 }
 
 main()
