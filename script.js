@@ -193,6 +193,12 @@ const renderBoard = new CustomEvent('renderBoard', {
   composed: false,
 })
 
+const checkBoard = new CustomEvent('checkBoard', {
+  bubbles: true,
+  cancelable: false,
+  composed: false,
+})
+
 const checkWinner = new CustomEvent('checkWinner', {
   bubbles: true,
   cancelable: false,
@@ -370,19 +376,26 @@ UserInterface.rootElem.addEventListener('renderBoard', () => {
       gameCellsArr[index].innerText = item
     }
   })
-  UserInterface.rootElem.dispatchEvent(checkWinner)
+  UserInterface.rootElem.dispatchEvent(checkBoard)
+})
+
+UserInterface.rootElem.addEventListener('checkBoard', function _private() {
+  if (Gameplay.winner()) {
+    UserInterface.rootElem.dispatchEvent(checkWinner)
+  }
+  if (Gameplay.isDraw()) {
+    alert('Is a draw! :(')
+  }
 })
 
 UserInterface.rootElem.addEventListener('checkWinner', function _private() {
   const winner = Gameplay.winner()
-  if (winner) {
-    const [whoWon] = State.currentUsers.filter((item) => item.mark === winner)
-    whoWon.winner()
-    if (winner === 'x') {
-      UserInterface.playerX.points.innerText = whoWon.roundsWon
-    }
-    if (winner === 'o') {
-      UserInterface.playerO.points.innerText = whoWon.roundsWon
-    }
+  const [whoWon] = State.currentUsers.filter((item) => item.mark === winner)
+  whoWon.winner()
+  if (winner === 'x') {
+    UserInterface.playerX.points.innerText = whoWon.roundsWon
+  }
+  if (winner === 'o') {
+    UserInterface.playerO.points.innerText = whoWon.roundsWon
   }
 })
