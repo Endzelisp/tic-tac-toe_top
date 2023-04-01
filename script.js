@@ -160,23 +160,14 @@ const UserInterface = (function () {
   }
 })()
 
-const State = (function () {
-  let position = 0
-  let arr
-  let typeOfGame
-  let singlePlayerMark
-  const players = {}
-  const currentUsers = []
-
-  return {
-    position,
-    arr,
-    typeOfGame,
-    singlePlayerMark,
-    players,
-    currentUsers,
-  }
-})()
+const State = {
+  position: 0,
+  arr: [],
+  typeOfGame: '',
+  singlePlayerMark: '',
+  players: {},
+  currentUsers: [],
+}
 
 /* --------------- Custom Events ---------------- */
 
