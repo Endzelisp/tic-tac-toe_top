@@ -145,6 +145,7 @@ const UserInterface = (function () {
     points: _getElem('[data-player="o"] p'),
   }
   const gameboard = _getElem('[data-element="board"]')
+  const congratsModal = _getElem('[data-dialog="congrats-modal"]')
 
   return {
     rootElem,
@@ -158,6 +159,7 @@ const UserInterface = (function () {
     playerX,
     playerO,
     gameboard,
+    congratsModal,
   }
 })()
 
@@ -398,4 +400,7 @@ UserInterface.rootElem.addEventListener('checkWinner', function _private() {
   if (winner === 'o') {
     UserInterface.playerO.points.innerText = whoWon.roundsWon
   }
+  const congratsMsgElem = UserInterface.congratsModal.querySelector('h3')
+  congratsMsgElem.innerText = `Congratulations ${whoWon.userName}, you won!`
+  UserInterface.congratsModal.showModal()
 })
