@@ -401,6 +401,7 @@ UserInterface.rootElem.addEventListener('checkWinner', function _private() {
   if (winner === 'o') {
     UserInterface.playerO.points.innerText = whoWon.roundsWon
   }
+  Gameplay.turn('restart')
   const congratsMsgElem = UserInterface.congratsModal.querySelector('h3')
   congratsMsgElem.innerText = `Congratulations ${whoWon.userName}, you won!`
   UserInterface.congratsModal.showModal()
