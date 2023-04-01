@@ -15,8 +15,6 @@ const Gameboard = (function () {
 /* ---------------- Gameplay module ------------------ */
 
 const Gameplay = (function (board) {
-  let isActive = false
-
   const _isBoardFull = function () {
     return board.every((item) => item !== undefined)
   }
@@ -38,7 +36,6 @@ const Gameplay = (function (board) {
     // is already taken or if a player won
 
     const isOver = _isBoardFull() || !!winner()
-    if (isOver) Gameplay.isActive = false
     return isOver
   }
 
@@ -64,7 +61,7 @@ const Gameplay = (function (board) {
     return null
   }
 
-  return { turn, isOver, winner, isDraw, isActive }
+  return { turn, isOver, winner, isDraw }
 })(Gameboard.array)
 
 /* ---------------- Computer module ------------------ */
