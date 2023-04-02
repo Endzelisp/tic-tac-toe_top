@@ -343,6 +343,10 @@ function main() {
         if (State.singlePlayerMark === 'o') {
           State.players.playerX = 'Computer'
           State.players.playerO = UserInterface.nameSelection.inputPlayerO.value
+          setTimeout(() => {
+            Gameboard.array[Computer.selection()] = Gameplay.turn()
+            UserInterface.rootElem.dispatchEvent(renderBoard)
+          }, 800)
         }
       }
       State.currentUsers[0] = Players.create(State.players.playerX, 'x')
@@ -365,6 +369,12 @@ function main() {
       const turn = Gameplay.turn()
       if (Gameboard.array[target.dataset.index] === undefined) {
         Gameboard.array[target.dataset.index] = turn
+      }
+      if (State.typeOfGame === 'player-vs-computer') {
+        setTimeout(() => {
+          Gameboard.array[Computer.selection()] = Gameplay.turn()
+          this.dispatchEvent(renderBoard)
+        }, 500)
       }
       this.dispatchEvent(renderBoard)
     }
@@ -413,6 +423,15 @@ function main() {
       if (target.dataset.button === 'restart') {
         Gameboard.clear()
         UserInterface.rootElem.dispatchEvent(renderBoard)
+        if (
+          State.typeOfGame === 'player-vs-computer' &&
+          State.singlePlayerMark === 'o'
+        ) {
+          setTimeout(() => {
+            Gameboard.array[Computer.selection()] = Gameplay.turn()
+            UserInterface.rootElem.dispatchEvent(renderBoard)
+          }, 800)
+        }
       }
     }
   )
