@@ -67,13 +67,24 @@ function main() {
   /* ---------------- Computer module ------------------ */
 
   const Computer = (function (board) {
-    const _selectRandomItem = function (arr) {
-      const length = arr.length
-      const random = Math.floor(Math.random() * length)
-      return arr[random]
+    function _freeSquares() {
+      return board
+        .map((item, index) => {
+          if (item === undefined) {
+            return index
+          }
+        })
+        .filter((item) => item !== undefined)
     }
 
-    return {}
+    function selection() {
+      const squares = _freeSquares()
+      const length = squares.length
+      const selection = Math.floor(Math.random() * length)
+      return squares[selection]
+    }
+
+    return { selection }
   })(Gameboard.array)
 
   /* ----------------- Players module ------------------ */
