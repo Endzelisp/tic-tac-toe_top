@@ -200,12 +200,6 @@ function main() {
     composed: false,
   })
 
-  const checkWinner = new CustomEvent('checkWinner', {
-    bubbles: true,
-    cancelable: false,
-    composed: false,
-  })
-
   /* -------- carrousel event handlers -------- */
 
   UserInterface.btnNext.addEventListener('pointerdown', function _private() {
@@ -376,7 +370,7 @@ function main() {
     }
   })
 
-  UserInterface.rootElem.addEventListener('renderBoard', () => {
+  UserInterface.rootElem.addEventListener('renderBoard', function _private() {
     const gameCellsArr = [...UserInterface.gameboard.querySelectorAll('div')]
     Gameboard.array.forEach((item, index) => {
       gameCellsArr[index].innerText = ''
@@ -384,31 +378,31 @@ function main() {
         gameCellsArr[index].innerText = item
       }
     })
-    UserInterface.rootElem.dispatchEvent(checkBoard)
+    if (Gameplay.isOver()) {
+      this.dispatchEvent(checkBoard)
+    }
   })
 
   UserInterface.rootElem.addEventListener('checkBoard', function _private() {
+    let message
     if (Gameplay.winner()) {
-      UserInterface.rootElem.dispatchEvent(checkWinner)
+      const winner = Gameplay.winner()
+      const [whoWon] = State.currentUsers.filter((item) => item.mark === winner)
+      whoWon.winner()
+      if (winner === 'x') {
+        UserInterface.playerX.points.innerText = whoWon.roundsWon
+      }
+      if (winner === 'o') {
+        UserInterface.playerO.points.innerText = whoWon.roundsWon
+      }
+      message = `Congratulations ${whoWon.userName}, you won!`
     }
     if (Gameplay.isDraw()) {
-      alert('Is a draw! :(')
-    }
-  })
-
-  UserInterface.rootElem.addEventListener('checkWinner', function _private() {
-    const winner = Gameplay.winner()
-    const [whoWon] = State.currentUsers.filter((item) => item.mark === winner)
-    whoWon.winner()
-    if (winner === 'x') {
-      UserInterface.playerX.points.innerText = whoWon.roundsWon
-    }
-    if (winner === 'o') {
-      UserInterface.playerO.points.innerText = whoWon.roundsWon
+      message = `It's a draw`
     }
     Gameplay.turn('restart')
     const congratsMsgElem = UserInterface.congratsModal.querySelector('h3')
-    congratsMsgElem.innerText = `Congratulations ${whoWon.userName}, you won!`
+    congratsMsgElem.innerText = message
     UserInterface.congratsModal.showModal()
   })
 
