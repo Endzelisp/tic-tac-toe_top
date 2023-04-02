@@ -369,14 +369,14 @@ function main() {
       const turn = Gameplay.turn()
       if (Gameboard.array[target.dataset.index] === undefined) {
         Gameboard.array[target.dataset.index] = turn
+        this.dispatchEvent(renderBoard)
       }
-      if (State.typeOfGame === 'player-vs-computer') {
+      if (State.typeOfGame === 'player-vs-computer' && !Gameplay.isOver()) {
+        Gameboard.array[Computer.selection()] = Gameplay.turn()
         setTimeout(() => {
-          Gameboard.array[Computer.selection()] = Gameplay.turn()
           this.dispatchEvent(renderBoard)
         }, 500)
       }
-      this.dispatchEvent(renderBoard)
     }
   })
 
