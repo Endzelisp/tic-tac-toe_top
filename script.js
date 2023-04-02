@@ -206,7 +206,7 @@ function main() {
     composed: false,
   })
 
-  /* --------------- Event Handlers ---------------- */
+  /* -------- carrousel event handlers -------- */
 
   UserInterface.btnNext.addEventListener('pointerdown', function _private() {
     if (
@@ -363,6 +363,8 @@ function main() {
     UserInterface.playerO.name.innerText = State.players.playerO
   })
 
+  /* -------- game event handlers -------- */
+
   UserInterface.gameboard.addEventListener('pointerdown', function _private(e) {
     if (!Gameplay.isOver()) {
       const target = e.target
@@ -420,6 +422,8 @@ function main() {
       }
     }
   )
+
+  /* -------- single run code -------- */
 
   UserInterface.nameSelection.inputPlayerX.value = ''
   UserInterface.nameSelection.inputPlayerO.value = ''
